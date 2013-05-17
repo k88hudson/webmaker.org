@@ -12,7 +12,6 @@ body {
   width: 100%;
   height: 100%;
   background: #F5F5F4;
-  //background: #3A3C3C;
   color: #6B7161;
   font-size: 100%;
   min-width: 600px;
@@ -44,7 +43,6 @@ header {
 .ui-select {
   padding-right: 0;
 }
-
 
 
 .ui-select > .icon-caret-down {
@@ -97,9 +95,21 @@ header {
   vertical-align: top;
 }
 
+.projects-container,
+#projects,
+.project {
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
 .projects-container {
   position: relative;
   display: inline-block;
+
+  -webkit-transition-property: height, width;
+  -moz-transition-property: height, width;
+  transition-property: height, width;
 }
 
 #projects {
@@ -108,6 +118,10 @@ header {
   overflow: hidden;
   position: relative;
   left: -3px;
+
+  -webkit-transition-property: height, width;
+  -moz-transition-property: height, width;
+  transition-property: height, width;
 }
 
 .project {
@@ -118,18 +132,16 @@ header {
   height: 97px;
   margin-left: 6px;
 
-  background: white;
-  border: 1px solid lighten( #B7BBB1, 10% );
+  overflow: hidden;
+
   font-size: 13px;
   line-height: 1.3;
   text-align: left;
   color: lighten( #6B7161, 30% );
-  &:hover {
-    color: #6B7161;
-    border: 1px solid #B7BBB1;
-    top: 2px;
-    box-shadow: 0 10px 2px -4px darken( #F3F6EC, 8% );
-  }
+
+  -webkit-transition-property: width, left, right, top;
+  -moz-transition-property: width, left, right, top;
+  transition-property: width, left, right, top;
 }
 
 .project-title,
@@ -140,11 +152,22 @@ header {
   padding: 1em;
 }
 .project-edit {
+  display: block;
+  height: 100%;
+  .border-box();
   color: inherit;
+  background: white;
+  border: 1px solid lighten( #B7BBB1, 10% );
 }
 
 .project-link {
   display: none;
+  &:hover {
+    color: #6B7161;
+    border: 1px solid #B7BBB1;
+    top: 2px;
+    box-shadow: 0 10px 2px -4px darken( #F3F6EC, 8% );
+  }
 }
 .project-title {
   top: 0;
