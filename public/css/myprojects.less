@@ -131,7 +131,6 @@ header {
   width: 150px;
   height: 97px;
   margin-left: 6px;
-
   overflow: hidden;
 
   font-size: 13px;
@@ -139,9 +138,13 @@ header {
   text-align: left;
   color: lighten( #6B7161, 30% );
 
-  -webkit-transition-property: width, left, right, top;
-  -moz-transition-property: width, left, right, top;
-  transition-property: width, left, right, top;
+  -webkit-transition-property: width, left, right;
+  -moz-transition-property: width, left, right;
+  transition-property: width, left, right;
+
+  &:hover {
+    top: 2px;
+  }
 }
 
 .project-title,
@@ -153,21 +156,21 @@ header {
 }
 .project-edit {
   display: block;
+  position: relative;
   height: 100%;
   .border-box();
   color: inherit;
   background: white;
   border: 1px solid lighten( #B7BBB1, 10% );
+  &:hover {
+    color: #6B7161;
+    border: 1px solid #B7BBB1;
+    box-shadow: 0 10px 2px -4px darken( #F5F5F4, 8% );
+  }
 }
 
 .project-link {
   display: none;
-  &:hover {
-    color: #6B7161;
-    border: 1px solid #B7BBB1;
-    top: 2px;
-    box-shadow: 0 10px 2px -4px darken( #F3F6EC, 8% );
-  }
 }
 .project-title {
   top: 0;
