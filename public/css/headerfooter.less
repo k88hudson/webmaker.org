@@ -50,8 +50,23 @@
     &:last-of-type {
       padding-right: 0;
     }
+
+    #nav-index {
+      position: relative;
+      &:hover {
+        color: #55575c;
+        background: url(../img/bkgFooter.jpg);
+      }
+      &:hover .makenav-hover {
+        display: block;
+      }
+    }
+
     .makenav-hover {
+      display: none;
       position: absolute;
+      left: 2px;
+      border: 1px solid #fff;
       z-index: 2;
       width: 265px;
       height: 140px;
@@ -82,7 +97,7 @@
       .help {
         height: 40px;
         line-height: 40px;
-        padding: 0 15px;
+        padding-left: 15px;
         background-color: #FFF;
 
         img {
@@ -97,12 +112,6 @@
           display: inline;
         }
       }
-    }
-
-    #nav-index:hover {
-      color: #55575c;
-      background: url(../img/bkgFooter.jpg);
-
     }
 
     a {
