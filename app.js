@@ -65,7 +65,6 @@ app.get( "/myprojects", routes.myprojects() );
 /**
  * WEBMAKER SSO
  */
-
 persona(app, { audience: env.get( "AUDIENCE" ) } );
 
 app.get( "/user/:userid", function( req, res ) {
