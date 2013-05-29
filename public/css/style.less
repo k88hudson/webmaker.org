@@ -48,6 +48,10 @@ a {
   position: relative;
   width: 100%;
 
+  #index & {
+    padding: @gutter * @unit;
+  }
+
   > .clone-item {
     display: none;
   }
@@ -121,10 +125,6 @@ a {
 @make-border-size: 5px;
 @make_height: 150px;
 @make_width: 640px;
-
-.main-gallery {
-  margin: 0 10px;
-}
 
 .main-gallery:after {
   content: ' ';
