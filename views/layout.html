@@ -13,7 +13,8 @@
   </head>
   <body id="{{ page }}" data-endpoint="{{ makeEndpoint }}">
   <div class="webmaker-outer-wrapper">
-    <div id="webmaker-nav">
+
+    <header id="webmaker-nav">
       <nav class="webmaker-nav-container">
         <div class="user-nav-container">
           <a id="logo" href="/"><img src="img/logo.png" alt="Mozilla Webmaker"></a>
@@ -40,7 +41,7 @@
       <div class="my-projects-container">
         <iframe src="/myprojects?app=webmaker&email={{ email }}"></iframe>
       </div>
-    </div>
+    </header>
 
     <div id="midbar">{% block midbar %}{% endblock %}</div>
 
