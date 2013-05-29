@@ -65,6 +65,7 @@ app.get( "/myprojects", routes.myprojects() );
 /**
  * WEBMAKER SSO
  */
+
 persona(app, { audience: env.get( "AUDIENCE" ) } );
 
 app.get( "/user/:userid", function( req, res ) {
@@ -75,6 +76,7 @@ app.get( "/user/:userid", function( req, res ) {
         reason: (err || "user not defined")
       });
     }
+    req.session.webmakerid = user.subdomain;
     res.json({
       status: "okay",
       user: user
