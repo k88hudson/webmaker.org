@@ -1,14 +1,14 @@
 module.exports = function( make, makeURL, personaSSO, loginAPI ) {
   return function( req, res ) {
     var type = req.param( "type" ) || "tags",
-        query = req.param( "q" ) || "featured",
+        query = req.params.tag || req.param( "q" ),
         makeSize = req.param( "size" ),
         sortByField = req.param( "sortByField" ) || "createdAt",
         sortByOrder = req.param( "order" ) || "desc",
         page = req.param( "page" ) || 1,
         options = {};
 
-    options[ type ] = query;
+    options[ type ] = query || "featured";
 
     make.find( options )
       .limit( 12 )
@@ -20,7 +20,7 @@ module.exports = function( make, makeURL, personaSSO, loginAPI ) {
           makeSize: makeSize,
           page: "search",
           pagination: page,
-          query: req.param( "q" ),
+          query: query,
           searchType: type,
           makeEndpoint: makeURL,
           personaSSO: personaSSO,
