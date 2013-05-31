@@ -64,7 +64,7 @@ define(['jquery', 'uri', 'base/ui'],
     });
 
     if ( query ) {
-      $searchField.val( query.replace(/,/g,", ") );
+      $searchField.val( query );
       onKeyDown();
     } else {
       $searchField.on( "keydown", onKeyDown );
@@ -121,6 +121,7 @@ define(['jquery', 'uri', 'base/ui'],
       .limit( limit )
       .sortByField( sortBy, sortOrder )
       .then( function( error, results ) {
+        console.log( results );
         var result;
         for ( var i = 0; i < results.length; i++ ) {
           result = results[ i ];
