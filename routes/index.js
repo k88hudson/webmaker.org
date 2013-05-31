@@ -19,7 +19,7 @@ module.exports = function( make, makeEndpoint, personaSSO, loginAPI ){
             res.redirect( "/search?type=user&q=" + req.params.username );
             break;
         }
-      }
+      };
     },
     includejs: function( hostname ) {
       return function( req, res ) {
