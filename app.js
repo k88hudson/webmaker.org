@@ -56,8 +56,8 @@ app.get( "/teach", routes.page( "teach" ) );
 app.get( "/party", routes.page( "party" ) );
 app.get( "/search", routes.search() );
 
-app.get( "/tags/:tag", routes.shortcuts( "tag" ) );
-app.get( "/users/:username", routes.shortcuts( "users" ) );
+app.get( "/t/:tag", routes.tag );
+app.get( "/u/:user", routes.user );
 
 app.get( "/template", routes.page( "template" ) );
 
