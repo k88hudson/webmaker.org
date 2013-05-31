@@ -19,7 +19,7 @@ module.exports = function( make, makeURL, personaSSO, loginAPI ) {
         options.tags.push(tag);
       }
     }
-    else {
+    else if ( req.param( "q" ) ) {
       options[ type ] = query;
     }
 
