@@ -9,6 +9,18 @@ module.exports = function( make, makeEndpoint, personaSSO, loginAPI ){
     search: function() {
       return require( "./search" )( make, makeEndpoint, personaSSO, loginAPI );
     },
+    shortcuts: function( shortcut ) {
+      return function( req, res ) {
+        switch( shortcut ) {
+          case "tags":
+            res.redirect( "/search?type=tags&q=" + req.params.tag );
+            break;
+          case "users":
+            res.redirect( "/search?type=user&q=" + req.params.username );
+            break;
+        }
+      }
+    },
     includejs: function( hostname ) {
       return function( req, res ) {
         res.set( "Content-Type", "application/javascript;charset=utf-8" );
