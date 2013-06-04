@@ -70,7 +70,7 @@ app.get( "/myprojects", routes.myprojects() );
 /**
  * WEBMAKER SSO
  */
-// LoginAPI helper Module    
+// LoginAPI helper Module
 var loginAPI = require( "webmaker-loginapi" )( app, env.get( "LOGINAPI" ) );
 
 persona(app, { audience: env.get( "AUDIENCE" ) } );
