@@ -13,7 +13,7 @@ module.exports = function( make, makeURL, personaSSO, loginAPI ) {
       .page( page )
       .then( function( err, data ) {
         if ( err ) {
-          res.send( err + "( username: " + username + ")" );
+          res.send( err );
           return;
         }
 
