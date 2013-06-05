@@ -17,7 +17,7 @@ module.exports = function( make, makeURL, personaSSO, loginAPI ) {
           return;
         }
 
-        for (var i=0; i<data.length;i++) {
+        for(var i=0; i<data.length;i++) {
           data[i].type = data[i].contentType.replace( /application\/x\-/g, "" );
           data[i].updatedAt = moment( data[i].updatedAt ).fromNow();
         }
