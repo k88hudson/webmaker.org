@@ -20,6 +20,14 @@ require(['jquery','base/carousel', 'base/webmaker', 'base/mediaGallery', 'base/p
   $(document).ready(function() {
     var $body = $('body');
 
+  // set up CSRF handling
+    var csrfToken = $("meta[name='X-CSRF-Token']").attr("content");
+    $.ajaxSetup({
+      beforeSend: function(request) {
+       request.setRequestHeader('X-CSRF-Token', csrfToken);
+      }
+    });
+
     webmaker.init({
       page: $body[0].id,
       makeURL: $body.data('endpoint')
@@ -35,13 +43,16 @@ require(['jquery','base/carousel', 'base/webmaker', 'base/mediaGallery', 'base/p
           makeID = $this.data("make-id");
       if(confirm('Are you sure you want to delete this make?')) {
         $.post("/remove", { makeID: makeID }, function(res) {
-          if( res.deletedAt ) {
+          if ( res.deletedAt ) {
             media.packery.remove( $this.closest(".make")[0] );
             media.packery.layout();
           } else {
             alert("Oops, we couldn't delete this make :(");
             console.log(res);
           }
+        }).fail( function( res ) {
+          alert("Oops, we couldn't delete this make :(");
+          console.log( res.responseText );
         });
       }
     });
