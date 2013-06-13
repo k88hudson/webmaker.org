@@ -60,20 +60,6 @@
     </div>
 
   <script>
-    // set up the watch
-    navigator.id.watch({
-      /*loggedInUser: payload.data.loggedInUser,*/
-      onlogin: function() {
-        console.log("login", arguments);
-      },
-      onlogout: function() {
-        console.log("logout", arguments);
-      },
-      onmatch: function() {
-        console.log("match", arguments);
-      },
-    });
-
     // Set up the login button's UX
     var login = document.getElementById("webmaker-login");
     login.addEventListener("click", function() {

@@ -52,8 +52,6 @@ var personaObserver = {
   var setupBindings = function(iframe) {
     commChan = iframe.contentWindow;
 
-    console.log(commChan);
-
     /*
       Assign watch function, and immediately call if the
       used called navigator.idSSO.watch(...) before the
