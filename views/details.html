@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="/ext/css/font-awesome.css">
-  <link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet">
   <link media="screen" rel="stylesheet" href="/css/style.css">
   <link media="screen" rel="stylesheet" href="/css/make-details.css">
 </head>
@@ -31,7 +30,7 @@
 
             {% if remixes.length %}
             <div class="remixed-by">
-              {{remixes.length}} remix{% if remixes.length > 1 %}es{% endif %} by
+              {{remixCount}} by
               <ul class="remixed-by-list">
                 {% for remix in remixes %}
                 <li><a href="{{remix.url}}">@{{remix.username}}</a></li>
@@ -92,9 +91,13 @@
   </div>
   <script src="/ext/js/require.js"></script>
   <script>
-    require(['../js/app'], function (app) {
-      require(['pages/details']);
+     requirejs.config({
+      paths: {
+        'jquery': '/ext/js/jquery-1.9.1',
+        'social': '/ext/js/socialmedia'
+      }
     });
+    require(['../../js/pages/details']);
   </script>
 </body>
 </html>
