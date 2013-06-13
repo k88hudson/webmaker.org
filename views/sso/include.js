@@ -22,7 +22,7 @@ navigator.idSSO = {
   to help reroute handlers from local to owning window.
 */
 var personaObserver = {
-  onlogin: function(assertion) {},
+  onlogin: function() {},
   onlogout: function() {},
   onmatch: function() {},
   oncancel: function() {}
@@ -35,12 +35,12 @@ var personaObserver = {
 */
 (function setupInterconnection() {
   document.removeEventListener("DOMContentLoaded", setupInterconnection, false);
-  if(!document.querySelector("#webmaker-nav iframe")) {
+
+  var iframe = document.querySelector("#webmaker-nav iframe");
+  if(!iframe) {
     document.addEventListener("DOMContentLoaded", setupInterconnection, false);
     return;
   }
-
-  var iframe = document.querySelector("#webmaker-nav iframe");
 
   /*
     set up the navigator bindings, using the onpage iframe
