@@ -95,8 +95,7 @@ app.get( "/search", routes.search );
 app.get( "/details", routes.details );
 // Old
 app.get( "/details/:id", function(req,res) {
-  req.query.id = req.params.id;
-  res.redirect("/details");
+  res.redirect("/details?id=" + req.params.id);
 });
 
 app.get( "/me", routes.me );
