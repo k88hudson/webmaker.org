@@ -17,25 +17,22 @@ navigator.idSSO = {
 };
 
 /*
-  data = data from message
-  origin = domain from which message was sent
-  source = window object message was sent from
+  The personaObserver is essentially a dummy object
+  until initialised through "sso_watch", and is used
+  to help reroute handlers from local to owning window.
 */
 var personaObserver = {
-  onlogin: function(assertion){
-    console.log('onlogin');
-  },
-  onlogout: function(){
-    console.log('onlogout');
-  },
-  onmatch: function(){
-    console.log('onmatch');
-  },
-  oncancel: function(){
-    console.log('oncancel');
-  }
+  onlogin: function(assertion) {},
+  onlogout: function() {},
+  onmatch: function() {},
+  oncancel: function() {}
 };
 
+/*
+  Try to set up the postMessage connection between the owning page
+  and the persona iframe. If the iframe is not available yet,
+  schedule a retry on DOMContentLoaded.
+*/
 (function setupInterconnection() {
   document.removeEventListener("DOMContentLoaded", setupInterconnection, false);
   if(!document.querySelector("#webmaker-nav iframe")) {
@@ -43,13 +40,13 @@ var personaObserver = {
     return;
   }
 
-  var commChan;
+  var iframe = document.querySelector("#webmaker-nav iframe");
 
   /*
-    Inject an iframe for Persona communication (see include.html)
+    set up the navigator bindings, using the onpage iframe
+    (see include.html for the iframe-side of things).
   */
-  var iframe = document.querySelector("#webmaker-nav iframe");
-  var setupBindings = function(iframe) {
+  function setupBindings(iframe) {
     commChan = iframe.contentWindow;
 
     /*
@@ -111,18 +108,11 @@ var personaObserver = {
     if(typeof preset === "object")  navigator.idSSO.logout(preset);
 
     /*
-      data = data from message
-      origin = domain from which message was sent
-      source = window object message was sent from
+     start listening for post messages
     */
-    // set up the comm. channel listener
     window.addEventListener("message", function(event) {
       var payload = JSON.parse(event.data);
-
-      console.log("POSTMESSAGE RECEIVED IN OWNER", payload);
-
       var fn = personaObserver[payload.type];
-
       if(fn) {
         switch(payload.type) {
           case "sso_onlogin":
@@ -140,14 +130,12 @@ var personaObserver = {
     return commChan;
   };
 
-  /**
-   * Try to bind the communication channel, and if we succeed,
-   * inform the iframe that we want to watch SSO operations.
-   */
-  var commChan = setupBindings(iframe);
+  /*
+    Try to bind the communication channel, and if we succeed,
+    inform the iframe that we want to watch SSO operations.
+  */
+  commChan = setupBindings(iframe);
   iframe.addEventListener("load", function() {
-    // make iframe aware of us.
-    console.log("SENDING sso_watch MESSAGE TO IFRAME");
     commChan.postMessage(JSON.stringify({
       type: "sso_watch",
       data: {
