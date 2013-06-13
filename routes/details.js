@@ -2,29 +2,33 @@ module.exports = function( make ) {
   var MAX_REMIXES = 10;
   return function( req, res ) {
 
+    function renderError(message) {
+      return res.render("details.html", {error: message});
+    }
+
     // Use a URL in the querystring or an ID
     var searchOptions = {};
-    if ( req.params.id ) {
-      searchOptions.id = req.params.id;
+    if ( req.query.id ) {
+      searchOptions.id = req.query.id;
     } else if ( req.query.url ) {
       searchOptions.url = decodeURIComponent( req.query.url );
     } else {
-      return res.send( "No URL or ID was passed" );
+      return renderError("No URL or ID was passed" );
     }
 
-    make.find( searchOptions ).process( function( err, data ) {
+    make.find(searchOptions).process( function( err, data ) {
       if ( err ) {
-        return res.send( err );
+        return renderError("Looks like there is a problem with the make API");
       }
       if ( data && !data.length ) {
-        return res.render( "details.html", {} );
+        return renderError("No make was found :(");
       }
       var makeData = data[ 0 ];
 
       // Prep remixes, max of 10
       makeData.remixes( function( err, remixData ) {
         if ( err ) {
-          return res.send( err );
+          return renderError("Looks like there is a problem with the make API");
         }
         makeData.remixes = [];
 
@@ -47,7 +51,7 @@ module.exports = function( make ) {
         if ( makeData.remixedFrom ) {
           make.id( makeData.remixedFrom ).then( function( err, remixedFromData ) {
             if ( err ) {
-              return res.send( err );
+              return renderError("Looks like there is a problem with the make API");
             }
             makeData.remixedFromData = {};
             makeData.remixedFromData.url = remixedFromData[ 0 ].url;

@@ -85,7 +85,7 @@
     </div><!-- content -->
     {% else %}
     <div class="make-error">
-      Sorry, that make doesn't exist! :(
+      {{error}}
     </div>
     {% endif %}
   </div>
@@ -97,7 +97,7 @@
         'social': '/ext/js/socialmedia'
       }
     });
-    require(['../../js/pages/details']);
+    require(['./js/pages/details']);
   </script>
 </body>
 </html>
