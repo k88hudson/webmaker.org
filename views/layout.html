@@ -26,8 +26,10 @@
             Hi <span id="identity" class="user-name-container"></span>
           </li>
           <li class="makes"><a href="/me">My makes</a></li>
-          <li>
-            <iframe src="{{audience}}/sso/include.html" class="include-frame"></iframe>
+          <li id="persona-btn">
+            <button id="webmaker-login">Sign in <span>Sign up</span></button>
+            <button id="webmaker-logout">Sign out</button>
+            <iframe id="persona-iframe" src="{{audience}}/sso/include.html"></iframe>
           </li>
         </ul>
         <ul class="nav-list">

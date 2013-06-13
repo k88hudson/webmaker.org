@@ -2,7 +2,31 @@
 <html>
   <head>
     <title>Persona SSO</title>
-    <link rel="stylesheet" href="/css/include.css">
+    <style>
+      html {
+        height: 100%;
+        width: 100%;
+        background: transparent;
+      }
+      body {
+        margin: 0;
+        height: 100%;
+        width: 100%;1
+        background: transparent;
+        overflow: hidden;
+      }
+      button {
+        background: transparent;
+        border: none;
+        display: block;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+      }
+      #webmaker-logout {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <script src="https://login.persona.org/include.js"></script>
@@ -61,8 +85,8 @@
       }, false);
     </script>
 
-    <button id="webmaker-login">Sign in to save <span>Sign up</span></button>
-    <button id="webmaker-logout" style="display:none;">Sign out</button>
+    <button id="webmaker-login"></button>
+    <button id="webmaker-logout"></button>
 
     <script>
       // Set up the login button's UX
