@@ -1,16 +1,24 @@
 module.exports = function( make ) {
   var MAX_REMIXES = 10;
   return function( req, res ) {
-    make.id( req.params.id ).process( function( err, data ) {
 
+    // Use a URL in the querystring or an ID
+    var searchOptions = {};
+    if ( req.params.id ) {
+      searchOptions.id = req.params.id;
+    } else if ( req.query.url ) {
+      searchOptions.url = decodeURIComponent( req.query.url );
+    } else {
+      return res.send( "No URL or ID was passed" );
+    }
+
+    make.find( searchOptions ).process( function( err, data ) {
       if ( err ) {
         return res.send( err );
       }
-
       if ( data && !data.length ) {
         return res.render( "details.html", {} );
       }
-
       var makeData = data[ 0 ];
 
       // Prep remixes, max of 10
