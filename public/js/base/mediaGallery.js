@@ -75,7 +75,6 @@ define(['jquery', 'moment'],
         break;
     }
 
-    console.log( data );
     // create front Element & populate
     var $frontEl = $('<div class="front make-thumbnail">' + "<img class='make-avatar' src='http://www.gravatar.com/avatar/" + data.emailHash + "?s=44&d=" + defaultAvatar + "' alt='" + data.emailHash + "'>" + '<div class="front-title">' + data.title + '</div></div></div>');
 
