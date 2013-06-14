@@ -74,8 +74,9 @@ define(['jquery', 'moment'],
         break;
     }
 
+    console.log( data );
     // create front Element & populate
-    var $frontEl = $('<div class="front make-thumbnail"><div class="type-icon"></div><div class="front-title">' + data.title + '</div></div></div>');
+    var $frontEl = $('<div class="front make-thumbnail">' + "<div class='make-avatar'><img src='http://www.gravatar.com/avatar/" + data.emailHash + "?s=44&d=blank' alt='" + data.emailHash + "'></div>" + '<div class="front-title">' + data.title + '</div></div></div>');
 
     // if there's a thumbnail, set the right css
     if ( data.thumbnail ) {
@@ -95,7 +96,7 @@ define(['jquery', 'moment'],
     createMakeBack( data, $backEl );
 
     // add front & back elements to flip container
-    var $flip = $('<div class="flipContainer"></div>');
+    var $flip = $('<a href="'+ data.url +'" class="flipContainer"></a>');
 
     $flip.append($frontEl).append( $backEl );
 
