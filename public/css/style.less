@@ -555,9 +555,7 @@ a {
  */
 
 .party-banner {
-  height: 496px;
   min-height: auto;
-  margin-bottom: 30px;
   .border-top-radius(25px);
   border-radius: 50px;
 }
@@ -588,11 +586,70 @@ a {
   }
 }
 
+.party-hosts {
+  text-align: center;
+
+  h3 {
+    text-align: left;
+  }
+
+  img {
+    width: 50%;
+  }
+}
+
 #party {
   h1, h2{
-    color: @blue;
+    color: @green;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
   }
   #content {
+    .commitment-carousel {
+      background-color: @lightgrey;
+      padding: 5px;
+
+      img {
+        border-radius: 50em;
+        width: 87px;
+        float: left;
+        margin-right: 10px;
+      }
+
+      p {
+        font-size: 1.1em;
+      }
+
+      a {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .commitment-list-column {
+      ul {
+        padding-left: 20px;
+        margin: 0;
+        font-size: 0.9em;
+        font-family: 'Open Sans Light';
+
+        h4 {
+          margin: 0;
+        }
+
+        a {
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
     a {
       text-decoration: underline;
     }
@@ -604,6 +661,7 @@ a {
     }
   }
 }
+
 
 .makers-making {
   width: 500px;
