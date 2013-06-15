@@ -610,7 +610,9 @@ a {
   #content {
     .commitment-carousel {
       background-color: @lightgrey;
-      padding: 5px;
+      padding: 1em;
+      width: 100%;
+      .border-box;
 
       img {
         border-radius: 50em;
@@ -620,13 +622,32 @@ a {
       }
 
       p {
-        font-size: 1.1em;
+        font-size: 1.3em;
+        line-height: 1.2;
+        margin: 0 0 0.3em 0;
+      }
+
+      h4 {
+        margin: 0;
       }
 
       a {
         text-decoration: none;
         &:hover {
           text-decoration: underline;
+        }
+        &:before {
+          content: "\2013";
+        }
+      }
+    }
+    .commitment-carousel-items {
+      position: relative;
+      padding: 10px 0 0 110px;
+      .commitment-carousel-item {
+        display: none;
+        &:first-child {
+          display: block;
         }
       }
     }
@@ -635,14 +656,17 @@ a {
       ul {
         padding-left: 20px;
         margin: 0;
-        font-size: 0.9em;
+        font-size: 0.6em;
         font-family: 'Open Sans Light';
+        list-style: square;
 
         h4 {
           margin: 0;
         }
 
         a {
+          vertical-align: middle;
+          font-size: 1.5em;
           text-decoration: none;
           &:hover {
             text-decoration: underline;
