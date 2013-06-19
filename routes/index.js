@@ -22,7 +22,7 @@ module.exports = function( make ){
         res.render( "sso/include.html", {
           transparent: transparent
         });
-      }
+      };
     },
     includejs: function( hostname ) {
       return function( req, res ) {

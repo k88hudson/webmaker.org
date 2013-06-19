@@ -2,13 +2,8 @@
 <html>
   <head>
     <title>Persona SSO</title>
-    <link rel="stylesheet" href="/css/include.css">
-  </head>
-  <body>
-    <button id="webmaker-login">{% if not transparent %}Sign in to save <span>Sign up</span>{% endif %}</button>
-    <button id="webmaker-logout">{% if not transparent %}Sign out{% endif %}</button>
+    {% if transparent %}
     <style>
-      {% if transparent %}
       html {
         height: 100%;
         width: 100%;
@@ -29,18 +24,23 @@
         width: 100%;
         cursor: pointer;
       }
-      {% endif %}
+    </style>
+    {% else %}
+    <link rel="stylesheet" href="/css/include.css">
+    {% endif %}
+    <style>
       #webmaker-logout {
         display: none;
       }
     </style>
+  </head>
+  <body>
+    <button id="webmaker-login">{% if not transparent %}Sign in to save <span>Sign up</span>{% endif %}</button>
+    <button id="webmaker-logout">{% if not transparent %}Sign out{% endif %}</button>
+
     <script src="https://login.persona.org/include.js"></script>
     <script>
-      var loginButton,
-          logoutButton;
-      /**
-       * factory function for sso_... handling
-       */
+
       function proxyPersona(source, type) {
         return function(arg) {
           var payload = {
@@ -78,32 +78,31 @@
         }, false);
       }
 
-      function showLogin() {
-        if (!loginButton || !logoutButton ) {
-          return;
-        }
-        loginButton.style.display = "block";
-        logoutButton.style.display = "none";
-      }
-
-      function showLogout() {
-        if (!loginButton || !logoutButton ) {
-          return;
-        }
-        loginButton.style.display = "none";
-        logoutButton.style.display = "block";
-      }
-
       /**
        * Listen for messages from owning document.
        */
       window.addEventListener("message", function onMessage(event) {
         window.removeEventListener("message", onMessage, false);
 
-        var payload = JSON.parse(event.data);
+        var payload = JSON.parse(event.data),
+            loginButton = document.getElementById("webmaker-login"),
+            logoutButton = document.getElementById("webmaker-logout");
 
-        loginButton = document.getElementById("webmaker-login"),
-        logoutButton = document.getElementById("webmaker-logout");
+        function showLogin() {
+          if (!loginButton || !logoutButton ) {
+            return;
+          }
+          loginButton.style.display = "block";
+          logoutButton.style.display = "none";
+        }
+
+        function showLogout() {
+          if (!loginButton || !logoutButton ) {
+            return;
+          }
+          loginButton.style.display = "none";
+          logoutButton.style.display = "block";
+        }
 
         if (payload.type === "sso_watch") {
           var proxyLogin = proxyPersona(event.source, "sso_onlogin"),
