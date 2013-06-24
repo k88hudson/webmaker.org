@@ -3,6 +3,9 @@ module.exports = function( make ){
     api: {
       healthcheck: require( "./api/healthcheck" )
     },
+    clientconfig: function( env ) {
+      return require( "./clientconfig" )( env );
+    },
     details: require( "./details" )( make ),
     me: require( "./me" )( make ),
     page: function( view ) {

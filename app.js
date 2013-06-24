@@ -96,6 +96,9 @@ app.use( function( req, res, next ) {
   res.render( 'error.html', { code: 404 });
 });
 
+// Set configuration options
+app.get( "/js/app.js", routes.clientconfig( env ) );
+
 app.get( "/healthcheck", routes.api.healthcheck );
 
 app.get( "/", routes.page( "index" ) );
@@ -107,6 +110,7 @@ app.get( "/mentor", routes.page( "mentor" ) );
 app.get( "/getinvolved", routes.page( "getinvolved" ) );
 app.get( "/guides", routes.page( "guides" ) );
 app.get( "/search", routes.search );
+
 
 app.get( "/details", routes.details );
 // Old
