@@ -96,7 +96,6 @@ define(['jquery', 'uri', 'base/ui'],
             priorityIndex;
         for (var i=0; i<data.length; i++) {
           priorityIndex = extractStickyPriority(data[i].appTags);
-          console.log(priorityIndex);
           sortedData[priorityIndex] = data[i];
         }
         return sortedData;
