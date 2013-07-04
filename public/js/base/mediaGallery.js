@@ -221,7 +221,9 @@ define(['jquery', 'moment'],
           }
         });
 
-        this.wm.doSearch( { tags: [{ tags: ['webmaker:recommended'] }] }, this.limit, function( data ) {
+        this.wm.doSearch( {
+          tags: { tags: ['webmaker:recommended'] }
+        }, this.limit, function( data ) {
           searchCallback( data, self );
         });
         break;

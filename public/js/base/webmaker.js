@@ -2,6 +2,10 @@ define(['jquery', 'uri', 'base/ui'],
   function ($, URI, UI ) {
   'use strict';
 
+  var STICKY_REGEX = /^webmaker:p-(\d+)$/,
+      STICKY_PREFIX = "webmaker:p-",
+      STICKY_LIMIT = 12;
+
   var makeURL,
       page,
       make,
@@ -50,9 +54,10 @@ define(['jquery', 'uri', 'base/ui'],
       make = new Make({ apiURL: makeURL });
       setup.page( page );
     },
-    doSearch: function( options, limit, each, pageNo ) {
+    doSearch: function( options, limit, each, pageNo) {
       var sortBy = 'createdAt',
-          sortOrder = 'desc';
+          sortOrder = 'desc',
+          allMakes = [];
 
       options = options || {};
 
@@ -61,33 +66,59 @@ define(['jquery', 'uri', 'base/ui'],
         sortOrder = 'asc';
       }
 
-      make
-      .find( options )
-      .limit( limit )
-      .page ( pageNo || 1 )
-      .sortByField( sortBy, sortOrder )
-      .then( function( error, results, totalHits ) {
+      function searchCallback( err, results, totalHits ) {
         var result;
-
-        if ( error || !results ) {
-          return;
-        }
-
-        retrieved += results.length;
-
         if ( retrieved >= totalHits ) {
           $('.load-more').hide();
         }
-
-        for ( var i = 0; i < results.length; i++ ) {
-          result = results[ i ];
+        allMakes = allMakes.concat(results);
+        for ( var i = 0; i < allMakes.length; i++ ) {
+          result = allMakes[ i ];
           result.tags = getTags( result.tags );
           if ( each ) {
             each( result );
           }
         }
+      }
 
-      });
+      function extractStickyPriority( tags ) {
+        var res;
+        for ( var i = tags.length - 1; i >= 0; i-- ) {
+          res = STICKY_REGEX.exec( tags[ i ] );
+          if ( res ) {
+            return +res[1];
+          }
+        }
+      }
+
+      function sortByPriority( a, b ) {
+        var stickyA = extractStickyPriority( a.appTags ),
+            stickyB = extractStickyPriority( b.appTags );
+        return stickyA - stickyB;
+      }
+
+      function search( isSticky ) {
+        options.tagPrefix = [ STICKY_PREFIX, !isSticky ];
+        options.limit = isSticky ? STICKY_LIMIT : limit;
+        options.sortByField = [ sortBy, sortOrder ];
+        options.page = isSticky ? 1 : pageNo;
+        make
+          .find(options)
+          .then( function(err, data, totalHits) {
+            if (err) {
+              return;
+            }
+            retrieved += data.length;
+            if (isSticky) {
+              data.sort(sortByPriority);
+              allMakes = allMakes.concat(data);
+              search();
+            } else {
+              searchCallback(err, data, totalHits);
+            }
+          });
+      }
+      search(true);
     }
   };
 
