@@ -91,11 +91,17 @@ define(['jquery', 'uri', 'base/ui'],
         }
       }
 
-      function sortByPriority( a, b ) {
-        var stickyA = extractStickyPriority( a.appTags ),
-            stickyB = extractStickyPriority( b.appTags );
-        return stickyA - stickyB;
+      function sortByPriority(data) {
+        var sortedData = [],
+            priorityIndex;
+        for (var i=0; i<data.length; i++) {
+          priorityIndex = extractStickyPriority(data[i].appTags);
+          console.log(priorityIndex);
+          sortedData[priorityIndex] = data[i];
+        }
+        return sortedData;
       }
+
 
       function search( isSticky ) {
         options.tagPrefix = [ STICKY_PREFIX, !isSticky ];
@@ -110,8 +116,7 @@ define(['jquery', 'uri', 'base/ui'],
             }
             retrieved += data.length;
             if (isSticky) {
-              data.sort(sortByPriority);
-              allMakes = allMakes.concat(data);
+              allMakes.concat(sortByPriority(data));
               search();
             } else {
               searchCallback(err, data, totalHits);

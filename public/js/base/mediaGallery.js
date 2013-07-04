@@ -34,7 +34,7 @@ define(['jquery', 'moment'],
         // Note that this is not working... no createdAt?
 
     // Limit description length
-    if ( data.description.length > 370 ) {
+    if ( data.description && data.description.length > 370 ) {
       data.description = data.description.slice(0,370) + "...";
     }
 
