@@ -5,6 +5,7 @@ define(["jquery", "nunjucks", "base/ui", "moment"],
   var MAKE_VIEW = "make-templates/make-teach.html";
   var MAKE_URL = $("body").data("endpoint");
   var LIMIT = 12;
+  var STICKY_PREFIX = "webmaker:p-";
 
   var $loadMore = $(".load-more");
   var $loading = $(".loading-cat");
@@ -27,6 +28,7 @@ define(["jquery", "nunjucks", "base/ui", "moment"],
   // Create make client for teach, set up default options
   var make = new Make({apiURL: MAKE_URL});
   var options = {
+    tagPrefix: [STICKY_PREFIX, true], // NOT sticky
     tags: {tags:["webmaker:recommended", "guide"]},
     limit: LIMIT,
     page: 1
