@@ -2,7 +2,7 @@ var async = require("async");
 
 module.exports = function( make ) {
   return function( req, res ) {
-    var STICKY_PREFIX = "webmaker:t2each-";
+    var STICKY_PREFIX = "webmaker:teach-";
 
     function getMakes(options, callback) {
       make
