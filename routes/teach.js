@@ -4,21 +4,31 @@ module.exports = function( make ) {
   return function( req, res ) {
     var STICKY_PREFIX = "webmaker:teach-";
 
-    function getMakes(isSticky, callback) {
+    function getMakes(options, callback) {
       make
-        .tagPrefix(STICKY_PREFIX, !isSticky)
-        .tags(['webmaker:recommended', 'guide'])
-        .limit( 12 )
-        .sortByField( "createdAt", "desc" )
+        .find(options)
         .process( function( err, data, totalHits ) {
-          if (isSticky) {
+          if (options.tagPrefix === STICKY_PREFIX) {
             data = make.sortByPriority(STICKY_PREFIX, data);
           }
           callback(err, data);
         });
     }
 
-    async.map(["sticky", ""], getMakes, function(err, data) {
+    var stickyOptions = {
+      tagPrefix: STICKY_PREFIX,
+      limit: 12,
+      sortByField: ["createdAt", "desc"]
+    };
+
+    var normalOptions = {
+      tagPrefix: [STICKY_PREFIX, true], // true = NOT search
+      tags: { tags: ['webmaker:recommended', 'guide'] },
+      limit: 12,
+      sortByField: ["createdAt", "desc"]
+    };
+
+    async.map([stickyOptions, normalOptions], getMakes, function(err, data) {
       if ( err ) {
         return res.send( err );
       }
