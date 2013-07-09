@@ -64,13 +64,15 @@ define(["jquery", "nunjucks", "base/ui", "moment"],
     totalMakes = total;
     var elems = [];
     for (var i=0; i<data.length; i++) {
-      data[i].avatar = generateGravatar(data[i].emailHash);
-      data[i].updatedAt = moment( data[i].updatedAt ).fromNow();
-      data[i].createdAt = moment( data[i].createdAt ).fromNow();
-      data[i].remixurl = data[i].url + "/remix";
-      var $item = $.parseHTML(nunjucks.env.render(MAKE_VIEW, {make: data[i]}));
-      $mainGallery.append($item);
-      elems.push($item[0]);
+      if (data[i]) {
+        data[i].avatar = generateGravatar(data[i].emailHash);
+        data[i].updatedAt = moment( data[i].updatedAt ).fromNow();
+        data[i].createdAt = moment( data[i].createdAt ).fromNow();
+        data[i].remixurl = data[i].url + "/remix";
+        var $item = $.parseHTML(nunjucks.env.render(MAKE_VIEW, {make: data[i]}));
+        $mainGallery.append($item);
+        elems.push($item[0]);
+      }
     }
     packery.appended(elems);
     packery.layout();

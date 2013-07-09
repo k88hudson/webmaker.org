@@ -40,7 +40,7 @@ module.exports = function( make ) {
       all = sticky.concat(normal);
 
       res.render( "teach.html", {
-        makes: all,
+        makes: all || [],
         page: "teach"
       });
     });
