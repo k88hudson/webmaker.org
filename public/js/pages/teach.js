@@ -5,7 +5,7 @@ define(["jquery", "nunjucks", "base/ui", "moment"],
   var MAKE_VIEW = "make-templates/make-teach.html";
   var MAKE_URL = $("body").data("endpoint");
   var LIMIT = 12;
-  var STICKY_PREFIX = "webmaker:p-";
+  var STICKY_PREFIX = "webmaker:teach-";
 
   var $loadMore = $(".load-more");
   var $loading = $(".loading-cat");
