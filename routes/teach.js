@@ -2,15 +2,12 @@ var async = require("async");
 
 module.exports = function( make ) {
   return function( req, res ) {
-    var STICKY_PREFIX = "webmaker:teach-";
+    var STICKY_PREFIX = "webmaker:t2each-";
 
     function getMakes(options, callback) {
       make
         .find(options)
         .process( function( err, data, totalHits ) {
-          if (options.tagPrefix === STICKY_PREFIX) {
-            data = make.sortByPriority(STICKY_PREFIX, data);
-          }
           callback(err, data);
         });
     }
@@ -29,12 +26,21 @@ module.exports = function( make ) {
     };
 
     async.map([stickyOptions, normalOptions], getMakes, function(err, data) {
-      if ( err ) {
-        return res.send( err );
+      var sticky = [],
+          normal,
+          all;
+
+      if (err) {
+        return res.send(err);
       }
-      var allMakes = data[0].concat(data[1]);
+      if (data[0].length) {
+        sticky = make.sortByPriority(STICKY_PREFIX, data[0]);
+      }
+      normal = data[1];
+      all = sticky.concat(normal);
+
       res.render( "teach.html", {
-        makes: allMakes || [],
+        makes: all,
         page: "teach"
       });
     });
