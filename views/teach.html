@@ -60,12 +60,4 @@
     "url": "/tools"
   }];
 {% endblock %}
-{% block require_main %}{% endblock %}
-{% block scripts %}
-<script>
-  requirejs.config({baseUrl: '/js'});
-  require(['app'], function (app) {
-    require(['pages/teach']);
-  });
-</script>
-{% endblock %}
+{% block require_page %}pages/teach{% endblock %}

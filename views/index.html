@@ -12,8 +12,24 @@
        { 'title': 'Thimble', 'value': 'thimble' } ]) }}
 {% endblock %}
 {% block body %}
-{{ gallery() }}
+<div class="ui-wrapper">
+ <div class="main-gallery">
+    <!-- Packery helper stuff -->
+    <div class="gutter-sizer"></div>
+    <div class="no-makes-found">No makes were found!</div>
+    <div class="loading-cat g-4"></div>
+
+    <!-- STICKY BANNER -->
+    <div id="banner-join" class="packery-hide stamp" >
+      <div class="rotator">
+        <h2 style="display: block;">The web is still open.<br> Hack it.</h2></div><div class="join-border"></div><div class="join-signin"><span class="join-claim">Claim your Webmaker domain.</span><span class="btn-join-container"><a href="/login" class="ui-blue-btn btn-signin">Sign in<i class="icon-angle-right"></i></a></span>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
+{% block require_page %}pages/index{% endblock %}
 {% block scripts %}
 <script type="text/javascript">
 var hash = window.location.hash;

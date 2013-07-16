@@ -90,12 +90,4 @@
 </div>
 {% endblock %}
 {% block footer %}{% endblock %}
-{% block require_main %}{% endblock %}
-{% block scripts %}
-<script>
-  requirejs.config({baseUrl: '/js'});
-  require(['app'], function (app) {
-    require(['pages/editor']);
-  });
-</script>
-{% endblock %}
+{% block require_page %}pages/editor{% endblock %}
