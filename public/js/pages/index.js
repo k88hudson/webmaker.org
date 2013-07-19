@@ -9,10 +9,6 @@ require(['jquery', 'base/ui', 'base/gallery'],
       defaultSearch: 'webmaker:recommended'
     });
 
-    gallery.search({
-      sticky: true
-    });
-
     // Hide the banner if the user already exists
     navigator.idSSO.app.onlogin = function(loggedInUser, displayName) {
       $('#banner-join').hide();

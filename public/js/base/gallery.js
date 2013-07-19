@@ -131,6 +131,7 @@ define(['jquery', 'nunjucks', 'base/ui', 'moment'],
       };
 
       // Set up packery initially
+
       packery.on('layoutComplete', onLoadUI);
       if (banner) {
         packery.stamp(banner);

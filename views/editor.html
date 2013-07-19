@@ -39,7 +39,7 @@
     <div class="g-8">
       <label>You are displaying the </label>
       <select id="layout-select">
-        <option value="home"{% if layout == 'home'%} selected{% endif %}>Home page</option>
+        <option value="index"{% if layout == 'index'%} selected{% endif %}>Home page</option>
         <option value="teach"{% if layout == 'teach'%} selected{% endif %}>Teach page</option>
       </select>
       <label> layout with the prefix </label>
@@ -65,7 +65,7 @@
     <div class="loading-cat g-4"></div>
 
     <!-- STICKY BANNERS -->
-    {% if layout=='home' %}
+    {% if layout=='index' %}
     <div id="banner-join" class="packery-hide stamp" >
       <div class="rotator">
         <h2 style="display: block;">The web is still open.<br> Hack it.</h2></div><div class="join-border"></div><div class="join-signin"><span class="join-claim">Claim your Webmaker domain.</span><span class="btn-join-container"><a href="/login" class="ui-blue-btn btn-signin">Sign in<i class="icon-angle-right"></i></a></span>
