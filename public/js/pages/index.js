@@ -1,11 +1,11 @@
-require(['jquery', 'base/ui', 'base/gallery', 'sso-ux'],
+require(['jquery', 'base/ui', 'base/gallery'],
   function($, UI, Gallery) {
     'use strict';
 
     var gallery = new Gallery({
       banner: '#banner-join',
       makeView: 'make-flip.html',
-      stickyPrefix: 'webmaker:p-',
+      stickyPrefix: 'webmaker:p',
       defaultSearch: 'webmaker:recommended'
     });
 

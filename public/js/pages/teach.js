@@ -1,4 +1,4 @@
-define(['jquery', 'base/ui', 'base/gallery', 'sso-ux'],
+define(['jquery', 'base/ui', 'base/gallery'],
   function ($, UI, Gallery) {
   'use strict';
 

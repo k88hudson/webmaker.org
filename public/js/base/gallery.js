@@ -126,6 +126,7 @@ define(['jquery', 'nunjucks', 'base/ui', 'moment'],
         } else if (options.stickyPrefix) {
           searchOptions.tagPrefix = [options.stickyPrefix, true]; // NOT stickyPrefix
         }
+
         make.find(searchOptions).then(resultsCallback);
       };
 
