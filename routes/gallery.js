@@ -9,6 +9,7 @@ var async = require("async"),
           layouts = {
             index: {
               template: "make-flip.html",
+              tags: ['webmaker:recommended'],
               process: function(makes) {
                 if( makes[2] ) {
                   makes[2].size = "large";
@@ -20,7 +21,8 @@ var async = require("async"),
               }
             },
             teach: {
-              template: "make-teach.html"
+              template: "make-teach.html",
+              tags: ['webmaker:recommended','guide']
             }
           };
 
@@ -55,7 +57,7 @@ var async = require("async"),
 
       var normalOptions = {
         tagPrefix: [stickyPrefix, true], // true = NOT search
-        tags: { tags: ['webmaker:recommended'] },
+        tags: { tags: layout.tags },
         limit: LIMIT,
         sortByField: ["createdAt", "desc"]
       };
