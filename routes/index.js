@@ -29,7 +29,6 @@ module.exports = {
   tag: function( req, res ) {
     res.redirect("/search?type=tags&q=" + req.params.tag);
   },
-  teach: require("./teach"),
   user: require("./user"),
   usersearch: function( req, res ) {
     res.redirect( "/search?type=user&q=" + req.params.user );
