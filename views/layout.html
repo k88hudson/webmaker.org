@@ -191,10 +191,17 @@ window.__loginAPI = "{{ loginAPI }}";
 </script>
 <script src="/js/make-api.js"></script>
 <script src="/ext/js/packery.js"></script>
-
+<!--
 <script id="require-js" src="/ext/js/require.js"
   data-main="{% block require_main %}/js/main.js{% endblock %}"
   data-page="{% block require_page %}{% endblock %}">
+</script>
+-->
+<script src="/ext/js/require.js"></script>
+<script>
+require(['/js/config.js'], function() {
+  require(['{% block require_page %}{% endblock %}']);
+});
 </script>
 
 {% block scripts %}{% endblock %}

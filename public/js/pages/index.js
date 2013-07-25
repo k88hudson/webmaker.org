@@ -1,4 +1,4 @@
-require(['jquery', 'base/ui', 'base/gallery'],
+require(['jquery', 'base/ui', 'base/gallery', 'main'],
   function($, UI, Gallery) {
     'use strict';
 

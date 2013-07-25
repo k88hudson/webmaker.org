@@ -8,6 +8,7 @@ var express = require( "express" ),
     nunjucks = require( "nunjucks" ),
     path = require( "path" ),
     lessMiddleWare = require( "less-middleware" ),
+    requirejsMiddleware = require( "requirejs-middleware" ),
     i18n = require( "i18n-abide" );
 
 habitat.load();
@@ -23,7 +24,7 @@ var app = express(),
 nunjucksEnv.addFilter("instantiate", function(input) {
     var tmpl = new nunjucks.Template(input);
     return tmpl.render(this.getVariables());
-});    
+});
 
 // Initialize make client so it is available to other modules
 require("./lib/makeapi")({
@@ -43,7 +44,6 @@ if ( !!env.get( "FORCE_SSL" ) ) {
 }
 
 app.use( express.compress() );
-app.use( express.static( path.join( __dirname, "public" )));
 
 // Setup locales with i18n
 app.use( i18n.abide({
@@ -99,7 +99,47 @@ app.use( lessMiddleWare({
   yuicompress: optimize,
   optimization: optimize ? 0 : 2
 }));
+
+app.use( requirejsMiddleware({
+    src: WWW_ROOT,
+    dest: tmpDir,
+    once: false,
+    build: true,
+    debug: true,
+    modules: {
+      "/js/config.js": {
+        name: "config",
+        include: [ 'jquery','tabzilla', 'sso-ux' ]
+      },
+      "/js/pages/index.js": {
+        name: "pages/index",
+        exclude: [ 'config']
+      }
+    },
+    defaults: {
+      baseUrl: WWW_ROOT + "/js",
+      mainConfigFile: WWW_ROOT + "/js/config.js",
+      paths: {
+        jquery: "empty:",
+        "sso-ux": "empty:",
+        tabzilla: "empty:",
+        "make-api": path.resolve( __dirname, "node_modules/makeapi-client/src/make-api" ),
+        "nunjucks": path.resolve( __dirname, "node_modules/nunjucks/browser/nunjucks-dev" )
+      },
+      findNestedDependencies: true,
+      optimize: "none",
+      preserveLicenseComments: false
+    }
+  }));
+
 app.use( express.static( tmpDir ) );
+app.use( express.static( path.join( __dirname, "public" )));
+
+// Hack
+app.get( "/ext/js/sso-ux.js", function( req, res ) {
+  res.redirect( env.get("LOGIN") + "/js/sso-ux.js" );
+});
+
 
 // Nunjucks
 // This just uses nunjucks-dev for now -- middleware to handle compiling templates in progress
