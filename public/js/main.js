@@ -1,4 +1,4 @@
-require(['jquery','base/carousel', 'base/marquee', 'base/privacy', 'tabzilla', 'sso-ux'],
+define(['jquery','base/carousel', 'base/marquee', 'base/privacy', 'sso-ux'],
   function ($, carousel, Marquee, privacy) {
     'use strict';
     var $html = $('html, body');

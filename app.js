@@ -103,31 +103,33 @@ app.use( lessMiddleWare({
 app.use( requirejsMiddleware({
     src: WWW_ROOT,
     dest: tmpDir,
-    once: false,
+    once: !optimize,
     build: true,
-    debug: true,
+    debug: optimize,
     modules: {
       "/js/config.js": {
         name: "config",
-        include: [ 'jquery','tabzilla', 'sso-ux' ]
+        include: ['jquery']
       },
       "/js/pages/index.js": {
         name: "pages/index",
-        exclude: [ 'config']
+        exclude: ['config']
+      },
+      "/js/pages/teach.js": {
+        name: "pages/teach",
+        exclude: ['config']
       }
     },
     defaults: {
       baseUrl: WWW_ROOT + "/js",
       mainConfigFile: WWW_ROOT + "/js/config.js",
       paths: {
-        jquery: "empty:",
         "sso-ux": "empty:",
-        tabzilla: "empty:",
         "make-api": path.resolve( __dirname, "node_modules/makeapi-client/src/make-api" ),
         "nunjucks": path.resolve( __dirname, "node_modules/nunjucks/browser/nunjucks-dev" )
       },
       findNestedDependencies: true,
-      optimize: "none",
+      optimize: optimize ? "uglify" : false,
       preserveLicenseComments: false
     }
   }));
@@ -136,7 +138,7 @@ app.use( express.static( tmpDir ) );
 app.use( express.static( path.join( __dirname, "public" )));
 
 // Hack
-app.get( "/ext/js/sso-ux.js", function( req, res ) {
+app.get( "/js/sso-ux.js", function( req, res ) {
   res.redirect( env.get("LOGIN") + "/js/sso-ux.js" );
 });
 
