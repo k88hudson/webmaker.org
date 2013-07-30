@@ -29,9 +29,10 @@ define(['jquery', 'nunjucks', 'base/ui', 'moment'],
         }),
         isLastPage = false,
         searchOptions = {
+          tags: options.defaultSearch,
           limit: options.limit,
           sortByField: ['createdAt', 'desc'],
-          page: 1
+          page: 0
         };
 
       // Packery
@@ -83,7 +84,6 @@ define(['jquery', 'nunjucks', 'base/ui', 'moment'],
 
         isLastPage = searchOptions.page >= Math.ceil(total / searchOptions.limit);
         if (isStickySearch) {
-          searchOptions.tags = options.defaultSearch;
           searchOptions.page = 0;
           isLastPage = false; //We always want to load more for stickies.
         }
@@ -126,7 +126,7 @@ define(['jquery', 'nunjucks', 'base/ui', 'moment'],
         } else if (options.stickyPrefix) {
           searchOptions.tagPrefix = [options.stickyPrefix, true]; // NOT stickyPrefix
         }
-
+        console.log(searchOptions);
         make.find(searchOptions).then(resultsCallback);
       };
 
