@@ -205,6 +205,9 @@ app.get( "/", routes.gallery({
   layout: "index",
   prefix: "p"
 }));
+
+app.get( "/faker", routes.faker);
+
 app.get( "/editor", middleware.checkAdmin, routes.gallery({
   page: "editor"
 }));

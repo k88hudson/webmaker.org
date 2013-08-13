@@ -3,6 +3,7 @@ module.exports = {
     healthcheck: require("./api/healthcheck")
   },
   details: require("./details"),
+  faker: require("./faker"),
   gallery: require("./gallery"),
   include: function( transparent ) {
     return function( req, res ) {
