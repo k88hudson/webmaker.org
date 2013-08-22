@@ -6,7 +6,6 @@ define(['jquery', 'base/ui', 'base/gallery'],
     makeView: 'make-starter-make.html',
     stickyPrefix: 'webmaker:template-',
     defaultSearch: { tags: [ 'webmaker:template' ] },
-    limit: 20
   });
 
 });
