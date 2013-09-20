@@ -4,60 +4,76 @@ define( ["jquery", "text!html/ui-fragments.html" ], function( $, _fragments ) {
   var UI = {},
       $fragments = $( document.createElement( "div" ) ).html( _fragments );
 
-  UI.select = function( select, fn ) {
-    
-    $(".filter").removeClass("hide");
+  var fragments = document.createElement( "div" );
+  fragments.innerHTML = _fragments;
 
-    var $el = $( ".ui-select", $fragments ).clone( true ),
-        $toggleBtn = $el.find( ".icon" ),
-        $selectedEl = $el.find( ".ui-selected" ),
-        $menuContainer = $el.find( ".ui-select-menu" ),
-        $menu = $menuContainer.find( "ul" ),
-        $li = $menu.find( "li" );
+   UI.select = function( select, fn ) {
 
-    var $select = $( select ),
-        $options = $( "option", select ),
-        id = $select.attr( "id" );
+      $('.filter').removeClass("hide");
 
-    fn = fn || function() {};
+      select = document.querySelector(select);
 
-    $options.each( function( i, option ) {
-      var val = $( option ).val(),
-          html = $( option ).html(),
-          $newLi = $li.clone();
-      $newLi.attr( "data-value", val );
-      $newLi.html( html );
-      if ( $( option ).attr( "selected" ) ) {
-        $newLi.attr( "data-selected", true);
-        $selectedEl.html( html );
+      var el = fragments.querySelector(".ui-select").cloneNode(true),
+          toggleBtn = el.querySelector(".icon"),
+          selectedEl = el.querySelector(".ui-selected"),
+          menuContainer = el.querySelector(".ui-select-menu"),
+          menu = menuContainer.querySelector("ul"),
+          li = menu.querySelector("li");
+
+      var options = select.querySelectorAll('option'),
+          id = select.id;
+
+      fn = fn || function() {};
+
+      var option,
+          val,
+          html,
+          newLi,
+          currentSelected;
+
+      for (var i = 0; i < options.length; i++) {
+        option = options[i];
+        val = option.value;
+        html = option.innerHTML;
+
+        newLi = li.cloneNode(true);
+        newLi.setAttribute("data-value", val);
+        newLi.setAttribute("data-value", val);
+        newLi.innerHTML = html;
+
+        if (option.selected) {
+          newLi.getAttribute("data-selected", true);
+          selectedEl.innerHTML = html;
+        }
+        newLi.addEventListener("click", function() {
+          currentSelected = menu.querySelector("[data-selected]");
+          if (currentSelected) {
+           currentSelected.removeAttribute("data-selected");
+          }
+          this.setAttribute("data-selected", true);
+          selectedEl.innerHTML = html;
+          menuContainer.style.display = "none";
+          fn(val);
+          select.value = val;
+        }, false);
+        menu.appendChild(newLi);
       }
-      $newLi.click( function() {
-        var $this = $( this );
 
-        $menu.find( "[data-selected]" ).removeAttr( "data-selected" );
-        $( this ).attr( "data-selected", true );
-        $selectedEl.text( html );
-        $menuContainer.hide();
-        fn( val );
-        $select.val( val );
+      selectedEl.addEventListener("click", function(e) {
+        console.log(menuContainer.style.display);
+        menuContainer.style.display = menuContainer.style.display ? "": "block";
+      }, false);
 
-      });
-      $menu.append( $newLi );
-    });
+      toggleBtn.addEventListener("click", function(e) {
+        menuContainer.style.display = menuContainer.style.display ? "": "block";
+      }, false);
 
-    $selectedEl.click( function( e ) {
-      $menuContainer.toggle();
-    });
-    $toggleBtn.click( function( e ) {
-      $menuContainer.toggle();
-    });
+      el.id = id;
+      select.id = "";
 
-    $el.attr( "id", id );
-    $select.removeAttr( "id" );
-
-    $li.remove();
-    $el.insertAfter( $select );
-    $select.hide();
+      li.parentNode.removeChild(li);
+      select.parentNode.insertBefore(el, select.nextSibling);
+      select.style.display = "none";
   };
 
   UI.pagination = function( page, total, limit, callback ) {
