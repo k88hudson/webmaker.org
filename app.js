@@ -281,6 +281,8 @@ app.get( "/new", routes.user.newaccount );
 app.get( "/t/:tag", routes.tag );
 app.get( "/u/:user", routes.usersearch );
 
+app.get( "/teachtheweb", routes.page( "teachtheweb") );
+
 app.get( "/terms", routes.page( "terms" ) );
 app.get( "/privacy", routes.page( "privacy" ) );
 

@@ -1493,3 +1493,110 @@ img {
     margin-top: 1em;
   }
 }
+
+/*********************************************************
+* Front page
+*/
+
+article {
+  width: 1020px;
+  margin: 0 auto;
+}
+
+section {
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero-section {
+  .clearfix;
+ // background: #343D47;
+  background: @green;
+
+  background: -moz-linear-gradient(left,  #3fb58e 0%, #75c4a8 50%, #3fb58e 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#3fb58e), color-stop(50%,#75c4a8), color-stop(100%,#3fb58e)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #3fb58e 0%,#75c4a8 50%,#3fb58e 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #3fb58e 0%,#75c4a8 50%,#3fb58e 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #3fb58e 0%,#75c4a8 50%,#3fb58e 100%); /* IE10+ */
+  background: linear-gradient(to right,  #3fb58e 0%,#75c4a8 50%,#3fb58e 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3fb58e', endColorstr='#3fb58e',GradientType=1 ); /* IE6-9 */
+
+
+  color: #FFF;
+  padding: 50px 0 100px 0;
+  display: block;
+
+  h1,
+  h2 {
+    margin: 0;
+    font-weight: normal;
+  }
+  h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+    font-family: "Open Sans Light", sans-serif;
+  }
+  h2 {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+
+  button {
+    border: none;
+    padding: 16px 35px;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .green-button {
+    color: #FFF;
+    background: darken(#3FB58E, 3%);
+    border-bottom: 4px solid darken(#3FB58E, 15%);
+    &:hover {
+      background: darken(#3FB58E, 8%);
+      border-color: darken(#3FB58E, 20%);;
+    }
+  }
+  .white-button {
+    color: #555;
+    background: #FFF;
+    border-bottom: 4px solid lighten(@green, 30%);
+  }
+
+  .illustration,
+  .text {
+    float: left;
+  }
+  .illustration {
+    width: 40%;
+    margin-right: 5%;
+    img {
+      width: 100%;
+    }
+  }
+  .text {
+    width: 55%;
+    padding-top: 100px;
+  }
+}
+
+.mentor-stories {
+  height: 600px;
+  background: #D98A61 url(/img/mentor-hero-1.png) center no-repeat;
+  background-size: 1500px;
+
+  quote {
+    display: block;
+    color: #FFF;
+    width: 300px;
+    padding: 40px;
+    background: fade(#343D47, 60%);
+    font-weight: normal;
+    font-family: "Open Sans Light", sans-serif;
+    font-size: 25px;
+  }
+}
