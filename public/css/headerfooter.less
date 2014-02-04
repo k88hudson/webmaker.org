@@ -25,7 +25,7 @@
 }
 
 .user-info {
-  float: right;
+  .float(right);
   margin-top: 10px;
   @media only screen and (min-width: @width-large) {
     position: relative;
@@ -44,7 +44,7 @@
   .more-btn {
     line-height: 30px;
     border: 1px solid #CCC;
-    margin-left: 3px;
+    .margin-left(3px);
     color: #555;
     a:hover {
       text-decoration: none;
@@ -71,13 +71,13 @@
 
 .webmaker-nav .user img {
   top: 2px;
-  left: 6px;
+  .left(6px);
 }
 
 #tabzilla {
   position: absolute;
   top: 0;
-  right: 5px;
+  .right(5px);
   display: none;
   background: url(/img/tab.png) top left no-repeat;
   background-size: 150px;
@@ -90,7 +90,7 @@
   position: absolute;
   height: 46px;
   width: 157px;
-  margin-left: 0;
+  .margin-left(0);
   margin-top: 2px;
   overflow: hidden;
   display: inline-block;
@@ -109,7 +109,7 @@
       height: auto;
     }
     height: auto;
-    margin-left: -18px;
+    .margin-left(-18px);
   }
 }
 
@@ -121,13 +121,13 @@
   .clearfix;
   display: block;
   @media(min-width: @width-large) {
-    margin-right: 150px;
+    .margin-right(150px);
   }
 }
 
 
 #lang-picker {
-  padding: 0 0 0 0.75em;
+  .padding(0, 0, 0, 0.75em);
 
   ul {
     background: white;
@@ -154,7 +154,7 @@
   > .icon {
     background: none;
     color: #555;
-    padding: 0 10px 0 0;
+    .padding(0, 10px, 0, 0);
     &::before {
       .icon(@caret-down);
     }
@@ -173,7 +173,7 @@
 
 .gallery-header {
   .header {
-    float: left;
+    .float(left);
     padding-bottom: 10px;
     font-family: 'Open Sans Light', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -186,14 +186,14 @@
       .width(6);
     }
 
-    padding: 0 20px;
+    .padding(0, 20px, 0, 20px);
     @media (min-width: @width-twoblocks) {
       padding: 0;
     }
 
     h1, p {
       display: inline;
-      margin-right: 10px;
+      .margin-right(10px);
       font-weight: normal;
       letter-spacing: -0.25px
     }
@@ -227,9 +227,9 @@
 .filter {
   position: relative;
   background: @green;
-  float: right;
   z-index: 3;
-  padding: 0.5em 1em 1em;
+  .float(right);
+  .padding(0.5em, 1em, 1em, 1em);
   .border-box;
   .width(2);
 
@@ -261,13 +261,13 @@
     display: block;
     position: absolute;
     top: 100%;
-    left: 50%;
+    .left(50%);
+    .margin-left(-10px);
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
+    .border-left(10px solid transparent);
+    .border-right(10px solid transparent);
     border-top: 10px solid @green;
-    margin-left: -10px;
   }
 }
 
@@ -277,13 +277,13 @@
 .persona-icon {
   position: relative;
   top: 7px;
-  margin-right: 2px;
+  .margin-right(2px);
   border: 1px solid #b5b5b5;
   border-radius: 50em;
 }
 
 .user-info > li:last-child {
-  border-right: 1px solid #DDD;
+  .border-right(1px solid #DDD);
 }
 
 .webmaker-nav .user {
