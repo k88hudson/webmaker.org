@@ -1,31 +1,34 @@
 define(['webmaker-auth-client/webmaker-auth-client'], function ( WebmakerAuthClient ) {
   'use strict';
 
-  return function() {
-    var loginEl = document.querySelector('#webmaker-login');
+  var auth = new WebmakerAuthClient({
+    paths: {
+      verify: "/verify"
+    },
+    csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  });
 
-    var auth = new WebmakerAuthClient({
-      csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    });
+  var loginEl = document.querySelector('#webmaker-login'),
+      logoutEl = document.querySelector('#webmaker-logout');
 
-    auth.on('login', function(data) {
-      logoutEl.removeEventListener('click', auth.login, false);
-      loginEl.addEventListener('click', auth.logout, false);
-      // usernameEl.innerHTML = data.email;
-    });
+  function showLogin() {
+    loginEl.style.display = "inline-block";
+    logoutEl.style.display = "none";
+  }
 
-    auth.on('logout', function() {
-      logoutEl.removeEventListener('click', auth.logout, false);
-      loginEl.addEventListener('click', auth.login, false);
-      // usernameEl.innerHTML = '';
-    });
+  function showLogout() {
+    loginEl.style.display = "none";
+    logoutEl.style.display = "inline-block";
+  }
 
-    auth.on('error', function(err) {
-      console.log(err);
-    });
+  auth.on('login', showLogout);
 
-    auth.verify();
+  auth.on('logout', showLogin);
 
-    loginEl.addEventListener('click', auth.login, false);
-  };
+  auth.verify();
+
+  loginEl.addEventListener('click', auth.login, false);
+  logoutEl.addEventListener('click', auth.logout, false);
+
+  return auth;
 });

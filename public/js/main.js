@@ -50,7 +50,7 @@ require([
   'base/webmaker-campaign',
   'base/login',
   'tabzilla',
-], function ($, cta, Marquee, privacy, AnchorSlide, WebmakerUI, navigation, webmakerCampaign, auth) {
+], function ($, cta, Marquee, privacy, AnchorSlide, WebmakerUI, navigation, webmakerCampaign) {
   'use strict';
 
   var $window = $(window);
@@ -94,8 +94,6 @@ require([
 
   // Set up page-specific js
   var pageJS = $('#require-js').data('page');
-
-  auth();
 
   if (pageJS) {
     require([pageJS]);
