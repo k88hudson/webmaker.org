@@ -200,6 +200,8 @@ app.locals({
   flags: env.get("FLAGS") || {}
 });
 
+var personaHostname = env.get("PERSONA_HOSTNAME", "https://login.persona.org");
+
 app.use(function (req, res, next) {
   res.locals({
     email: req.session.email || '',
@@ -345,8 +347,6 @@ app.get("/u/:user", routes.usersearch);
 
 app.get("/terms", routes.page("terms"));
 app.get("/privacy", routes.page("privacy"));
-
-var personaHostname = env.get("PERSONA_HOSTNAME", "https://login.persona.org");
 
 app.get("/sso/include.js", routes.includejs(env.get("HOSTNAME")));
 app.get("/sso/include.html", middleware.removeXFrameOptions, routes.include({
