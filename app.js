@@ -12,6 +12,7 @@ var express = require("express"),
   path = require("path"),
   lessMiddleWare = require("less-middleware"),
   i18n = require("webmaker-i18n"),
+  WebmakerAuth = require("webmaker-auth"),
   navigation = require("./navigation");
 
 habitat.load();
@@ -76,6 +77,14 @@ require("./lib/makeapi")({
     id: env.get("MAKE_PUBLICKEY"),
     algorithm: "sha256"
   }
+});
+
+var webmakerAuth = new WebmakerAuth({
+  loginURL: env.get("LOGINAPI"),
+  secretKey: env.get("SESSION_SECRET"),
+  maxAge: env.get("MAX_AGE"),
+  forceSSL: env.get("FORCE_SSL"),
+  cookieName: env.get("COOKIE_NAME")
 });
 
 var routes = require("./routes");
@@ -173,16 +182,10 @@ app.use(i18n.middleware({
 
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.cookieParser());
-app.use(express.cookieSession({
-  key: "webmaker.sid",
-  secret: env.get("SESSION_SECRET"),
-  cookie: {
-    maxAge: 2678400000, // 31 days. Persona saves session data for 1 month
-    secure: !! env.get("FORCE_SSL")
-  },
-  proxy: true
-}));
+
+app.use(webmakerAuth.cookieParser());
+app.use(webmakerAuth.cookieSession());
+
 app.use(express.csrf());
 
 app.locals({
@@ -205,7 +208,8 @@ app.use(function (req, res, next) {
     csrf: req.csrfToken(),
     navigation: navigation,
     gettext: req.gettext,
-    campaignHeader: app.locals.flags.campaign ? "" + (Math.floor(Math.random() * +app.locals.flags.campaign)) : 0
+    campaignHeader: app.locals.flags.campaign ? "" + (Math.floor(Math.random() * +app.locals.flags.campaign)) : 0,
+    personaHostname: personaHostname
   });
   next();
 });
@@ -264,6 +268,11 @@ require("./lib/loginapi")(app, {
 var middleware = require("./lib/middleware");
 
 // ROUTES
+
+app.post('/verify', webmakerAuth.handlers.verify);
+app.post('/authenticate', webmakerAuth.handlers.authenticate);
+app.post('/create', webmakerAuth.handlers.create);
+app.post('/logout', webmakerAuth.handlers.logout);
 
 app.get("/healthcheck", routes.api.healthcheck);
 

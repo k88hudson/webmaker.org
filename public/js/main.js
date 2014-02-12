@@ -14,8 +14,6 @@ requirejs.config({
     'social': '/js/lib/socialmedia',
     'uri': '/js/lib/uri',
     'tabzilla': 'https://mozorg.cdn.mozilla.net/tabzilla/tabzilla',
-    // XXX: window.__loginAPI gets templated in server-side in layout.html
-    'sso-ux': window.__loginAPI + '/js/sso-ux',
     'nunjucks': '/bower/nunjucks/browser/nunjucks-dev',
     'makeapi': '/bower/makeapi-client/src/make-api',
     'localized': '/bower/webmaker-i18n/localized',
@@ -26,7 +24,8 @@ requirejs.config({
     'eventie': '/bower/eventie',
     'doc-ready': '/bower/doc-ready',
     'eventEmitter': '/bower/eventEmitter',
-    'matches-selector': '/bower/matches-selector'
+    'matches-selector': '/bower/matches-selector',
+    'webmaker-auth-client': '/bower/webmaker-auth-client'
   },
   shim: {
     'tabzilla': ['jquery'],
@@ -36,6 +35,7 @@ requirejs.config({
     'jquery-ui.position': ['jquery-ui'],
     'jquery-ui.menu': ['jquery-ui'],
     'jquery-ui.autocomplete': ['jquery-ui', 'jquery-ui.widget', 'jquery-ui.position', 'jquery-ui.menu'],
+    'webmaker-auth-client': ['eventEmitter']
   }
 });
 
@@ -48,9 +48,9 @@ require([
   '/bower/webmaker-ui/ui.js',
   'base/navigation',
   'base/webmaker-campaign',
+  'base/login',
   'tabzilla',
-  'sso-ux'
-], function ($, cta, Marquee, privacy, AnchorSlide, WebmakerUI, navigation, webmakerCampaign) {
+], function ($, cta, Marquee, privacy, AnchorSlide, WebmakerUI, navigation, webmakerCampaign, auth) {
   'use strict';
 
   var $window = $(window);
@@ -94,6 +94,8 @@ require([
 
   // Set up page-specific js
   var pageJS = $('#require-js').data('page');
+
+  auth();
 
   if (pageJS) {
     require([pageJS]);

@@ -19,6 +19,7 @@
   <!--[if lte IE 9]><link rel="stylesheet" href="/css/warning.css"><![endif]-->
 
   <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <script src="{{ personaHostname }}/include.js"></script>
   <script src="https://cdn.optimizely.com/js/206878104.js"></script>
   <!-- For JS error tracking purposes -->
   <script type="text/javascript">
@@ -72,7 +73,10 @@
               </div>
             </li>
             <li>
-              <iframe src="{{audience}}/{{localeInfo.lang}}/sso/include.html" class="include-frame"></iframe>
+              <div id="webmaker-login" class="persona-button">
+                <span class="text">{{ gettext("Sign in") }}</span><span class="tip"></span>
+              </div>
+              <span id="webmaker-logout"></span>
             </li>
             <li class="more-btn"><a href="#" class="navigation-more"><span class="icon-reorder"></span></a></li>
           </ul>
@@ -212,7 +216,6 @@
   {% endblock %}
 </script>
 
-<script src="{{ personaSSO }}/sso/include.js"></script>
 <script>
 // XXX: we need to load this after require loads jquery, but can't hard-code a path
 // in the require config.
