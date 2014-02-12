@@ -37,6 +37,8 @@
   <p>{{ gettext("browserUpgradeWarning") | safe }}</p>
 </div>
 
+{% include "components/create-user-modal.html" %}
+
 <div class="webmaker-outer-wrapper">
 
   {% if flags.campaign %}
