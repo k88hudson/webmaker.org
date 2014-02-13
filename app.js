@@ -19,7 +19,10 @@ habitat.load();
 
 var app = express(),
   env = new habitat(),
-  nunjucksEnv = new nunjucks.Environment(new nunjucks.FileSystemLoader(path.join(__dirname, 'views')), {
+  nunjucksEnv = new nunjucks.Environment([
+    new nunjucks.FileSystemLoader(path.join(__dirname, 'views')),
+    new nunjucks.FileSystemLoader(path.join(__dirname, 'bower_components'))
+  ], {
     autoescape: true
   }),
   NODE_ENV = env.get("NODE_ENV"),
