@@ -5,8 +5,17 @@
 
 {% block body %}
 
-{{ eventsOverlay("/events") }}
-<div id="map-canvas"></div>
+  <br/><br/>
+
+  <button class="go-home">Home</button>
+  <button class="go-add-event">Add Event</button>
+  <button class="go-event-list">Event List</button>
+
+  <br/><br/>
+
+  <div class="ui-wrapper ui-body">
+    <iframe id="events-embed" scrolling="no" style="border:0;" src="http://localhost:1981/index.html?embedded=true" width="100%"></iframe>
+  </div>
 
 {% endblock %}
 

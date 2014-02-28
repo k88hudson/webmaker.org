@@ -44,6 +44,7 @@ requirejs.config({
 
 require([
   'jquery',
+  'base/events-embed',
   'base/cta',
   'base/marquee',
   'base/email-signup',
@@ -53,7 +54,8 @@ require([
   'languages',
   'base/login',
   'tabzilla',
-], function ($, cta, Marquee, privacy, AnchorSlide, navigation, webmakerCampaign, languages) {
+], function ($, eventsEmbed, cta, Marquee, privacy, AnchorSlide, WebmakerUI, navigation, webmakerCampaign, languages) {
+
   'use strict';
 
   var $window = $(window);
@@ -68,11 +70,18 @@ require([
     }
   });
 
+
   // Call this when the element is ready
   languages.ready({
     position: "top",
     arrow: "left"
   });
+
+  // Embed events app if the iframe is present
+  if ($('iframe#events-embed').length) {
+    eventsEmbed.init();
+  }
+
 
   // Attach navigation UI
   navigation();
