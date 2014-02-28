@@ -1,4 +1,4 @@
-define(['jquery', 'base/login', 'rails', 'responsive', 'domReady!'],
+define(['jquery', 'base/login', 'rails', 'domReady!'],
 function ($, webmakerAuth) {
     $('.toggle-featured').on('ajax:beforeSend', function(ev, xhr, status) {
         console.log(xhr);

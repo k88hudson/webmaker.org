@@ -1,3 +1,3 @@
-define(['jquery', 'responsive', 'domReady!'],
+define(['jquery', 'domReady!'],
 function ($) {
 });
