@@ -9,9 +9,12 @@ define(['jquery'], function ($) {
       var contentHeight = 0;
       var hash;
 
+      // Load deep links into Events app on wrapper page load
+      self.changeView(window.location.hash.split('#/')[1]);
+
       // Poll Events app in iframe for height changes
       setInterval(function () {
-        self.$iframe[0].contentWindow.postMessage('heightCheck', self.$iframe[0].src);
+        self.$iframe[0].contentWindow.postMessage('ping', '*');
       }, 33); // 30 FPS
 
       // Respond to height change messages from Events app in iframe
