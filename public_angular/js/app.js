@@ -1,7 +1,16 @@
 'use strict';
 
-angular.module('exploreApp', ['ngRoute', 'slugifier', 'ui.bootstrap', 'exploreApp.services', 'webmakerAngular.login', 'localization'])
-  .config(function($routeProvider) {
+angular.module('exploreApp', [
+  'ngRoute',
+  'slugifier',
+  'ui.bootstrap',
+  'exploreApp.services',
+  'webmakerAngular.login',
+  'localization'
+])
+.config([
+  '$routeProvider',
+  function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -18,25 +27,29 @@ angular.module('exploreApp', ['ngRoute', 'slugifier', 'ui.bootstrap', 'exploreAp
       .otherwise({
         redirectTo: '/'
       });
-  })
-  .run(['$rootScope', '$http', 'CONFIG',
-    function($rootScope, $http, CONFIG) {
-      $http.defaults.headers.common['X-CSRF-Token'] = CONFIG.csrf;
-      $rootScope.$on('$locationChangeSuccess', function(event) {
-        var ngView = document.querySelector('[ng-view]');
-        if (ngView) {
-          ngView.scrollTop = 0;
-        }
+  }
+])
+.run([
+  '$rootScope',
+  '$http',
+  'CONFIG',
+  function($rootScope, $http, CONFIG) {
+    $http.defaults.headers.common['X-CSRF-Token'] = CONFIG.csrf;
 
-        // Set locale information
-        if (CONFIG.supported_languages.indexOf(CONFIG.lang) > 0) {
-          $rootScope.lang = CONFIG.lang;
-        } else {
-          $rootScope.lang = CONFIG.defaultLang;
-        }
-        $rootScope.direction = CONFIG.direction;
-        $rootScope.arrowDir = CONFIG.direction === 'rtl' ? "left" : "right";
-
+      // Scroll to top on location change
+      $rootScope.$on('$locationChangeSuccess', function () {
+        window.scrollTo(0, 0);
       });
-    }
-  ]);
+
+      // Set locale information
+      if (CONFIG.supported_languages.indexOf(CONFIG.lang) > 0) {
+        $rootScope.lang = CONFIG.lang;
+      } else {
+        $rootScope.lang = CONFIG.defaultLang;
+      }
+      $rootScope.direction = CONFIG.direction;
+      $rootScope.arrowDir = CONFIG.direction === 'rtl' ? 'left' : 'right';
+
+    });
+  }
+]);
