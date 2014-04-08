@@ -15,7 +15,7 @@
       <tab heading="{{ 'Staff picks' | i18n }}">
 
         <div ng-hide="kits.length" class="well well-create-kit text-center">
-          <button class="btn btn-default btn-create-kit"><span class="fa fa-plus"></span></button>
+          <a href="#add" class="btn btn-default btn-create-kit"><span class="fa fa-plus"></span></a>
           <p class="text-muted" ng-bind-html="'noStaffPick' | i18n"></p>
         </div>
 
@@ -75,9 +75,9 @@
       </tab>
     </tabset>
 
-     <p><button class="pull-right btn btn-primary">
+     <p><a href="#add" class="pull-right btn btn-primary">
          <span class="fa fa-plus"></span> {{ 'Add a kit' | i18n }}
-       </button></p>
+       </a></p>
 
   </div>
 

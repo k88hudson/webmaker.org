@@ -62,5 +62,49 @@
   "Code dude": {
     "message": "Code dude",
     "description": "Title for Gavin Suntop"
+  },
+  "NominateResource": {
+    "message": "Nominate a teaching resource",
+    "description": "For the /explore/#add page"
+  },
+  "NominateResourceDesc": {
+    "message": "Want your teaching kit or activity to be featured on webmaker.org? Submit it here.",
+    "description": "For the /explore/#add page"
+  },
+  "Title": {
+    "message": "Title",
+    "description": "For the submit a teaching resource form"
+  },
+  "Description": {
+    "message": "Description",
+    "description": "For the submit a teaching resource form"
+  },
+  "URL": {
+    "message": "URL",
+    "description": "For the submit a teaching resource form"
+  },
+  "Language": {
+    "message": "Language",
+    "description": "For the submit a teaching resource form"
+  },
+  "Author": {
+    "message": "Author",
+    "description": "For the submit a teaching resource form"
+  },
+  "Submit": {
+    "message": "Submit",
+    "description": "For the submit a teaching resource form"
+  },
+  "Thanks": {
+    "message": "Thanks!",
+    "description": "For submitting a teaching resource"
+  },
+  "AddResourceSuccess": {
+    "message": "Your teaching kit was submitted successfully. We'll have a look at it soon.",
+    "description": "For submitting a teaching resource"
+  },
+  "Suggest another resource": {
+    "message": "Suggest another resource",
+    "description": "On the /explore/add-success page"
   }
 }

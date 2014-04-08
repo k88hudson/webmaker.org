@@ -1,7 +1,7 @@
 <div class="jumbotron explore-jumbotron explore-jumbotron-add">
   <div class="container">
-    <h1>Nominate a teaching resource</h1>
-    <p>Want your teaching kit or activity to be <strong>featured on webmaker.org</strong>? Submit it here.</p>
+    <h1>{{ 'NominateResource' | i18n }}</h1>
+    <p>{{ 'NominateResourceDesc' | i18n }}</p>
   </div>
 </div>
 
@@ -9,21 +9,21 @@
 
   <form name="resourceForm">
     <div class="form-group">
-      <label for="title">Title</label>
+      <label for="title">{{ 'Title' | i18n }}</label>
       <input ng-model="new.title" name="title" class="form-control" required>
     </div>
     <div class="form-group">
-      <label for="url">Url</label>
+      <label for="url">{{ 'URL' | i18n }}</label>
       <input ng-model="new.url" name="url" class="form-control" required>
     </div>
     <div class="form-group">
-      <label for="description">Description</label>
+      <label for="description">{{ 'Description' | i18n }}</label>
       <textarea ng-model="new.description" name="description" class="form-control"></textarea>
     </div>
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="language">Language</label>
+          <label for="language">{{ 'Language' | i18n }}</label>
           <select ng-model="new.language" name="language" class="form-control"
             ng-options="lang for lang in langs">
           </select>
@@ -31,14 +31,11 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="author">Author</label>
+          <label for="author">{{ 'Author' | i18n }}</label>
           <input ng-model="new.author" name="author" class="form-control" required>
         </div>
       </div>
     </div>
-    <p><button ng-click="submit()" class="btn btn-primary">Submit</button></p>
+    <p><button ng-click="submit()" class="btn btn-primary">{{ 'Submit' | i18n }}</button></p>
   </form>
-
-  <p>Your teaching kit will get submitted to the queue!</p>
-
 </div>
