@@ -43,6 +43,28 @@ angular
       });
 
   }])
-  .controller('addController', ['$scope', function ($scope) {
-    //blah
-  }]);
+  .controller('addController', [
+    '$scope',
+    '$http',
+    '$location',
+    'CONFIG',
+    function ($scope, $http, $location, CONFIG) {
+      $scope.langs = CONFIG.supported_languages;
+      $scope.new = {};
+      $scope.new.language = 'en-US';
+
+      $scope.submit = function() {
+        if ($scope.resourceForm.$invalid) {
+          return;
+        }
+        $http
+          .post('/explore/api/suggest-resource', $scope.new)
+          .success(function (data) {
+            $location.path('/add-success');
+          })
+          .error(function (err) {
+            console.log(err);
+          });
+      };
+    }
+  ]);

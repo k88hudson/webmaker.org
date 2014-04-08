@@ -18,6 +18,7 @@
     "csv": "0.3.x",
     "express": "3.4.5",
     "habitat": "0.4.1",
+    "hatchet": "0.1.0",
     "helmet": "0.1.2",
     "hood": "0.2.1",
     "knox": "0.8.x",
@@ -42,7 +43,7 @@
     "webmaker-i18n": "0.3.15",
     "webmaker-loginapi": "https://github.com/mozilla/node-webmaker-loginapi/tarball/v0.1.18",
     "web-literacy-client": "1.1.1",
-    "webmaker-postalservice": "https://github.com/mozilla/node-webmaker-postalservice/tarball/v0.2.6"
+    "webmaker-postalservice": "https://github.com/mozilla/node-webmaker-postalservice/tarball/v0.2.6",
   },
   "devDependencies": {
     "colors": "0.6.2",

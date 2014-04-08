@@ -15,6 +15,9 @@ angular.module('exploreApp', ['ngRoute', 'ui.bootstrap', 'exploreApp.services', 
         templateUrl: 'views/add.html',
         controller: 'addController'
       })
+      .when('/add-success', {
+        templateUrl: 'views/add-success.html'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -34,6 +37,7 @@ angular.module('exploreApp', ['ngRoute', 'ui.bootstrap', 'exploreApp.services', 
       });
 
       // Set locale information
+
       if (CONFIG.supported_languages.indexOf(CONFIG.lang) > 0) {
         $rootScope.lang = CONFIG.lang;
       } else {

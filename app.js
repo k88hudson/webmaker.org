@@ -22,7 +22,8 @@ var express = require("express"),
   i18n = require("webmaker-i18n"),
   WebmakerAuth = require("webmaker-auth"),
   navigation = require("./navigation"),
-  rtltrForLess = require("rtltr-for-less");
+  rtltrForLess = require("rtltr-for-less"),
+  hatchet = require("hatchet");
 
 habitat.load();
 
@@ -412,6 +413,22 @@ app.get('/angular-config.js', function (req, res) {
   res.setHeader('Content-type', 'text/javascript');
   res.send('window.angularConfig = ' + JSON.stringify(angularConfig));
 });
+
+// Add a teaching resource
+if (env.get('FLAGS_EXPLORE')) {
+  app.post('/explore/api/suggest-resource', function (req, res) {
+    var data = req.body;
+
+    if (!req.session.user || !req.session.user.username) {
+      return res.send(403, 'You must be logged in to submit a resource');
+    }
+
+    data.suggestedBy = req.session.user.username;
+
+    hatchet.send('submit_teaching_resource', data);
+    res.send(data);
+  });
+}
 
 /**
  * Legacy Webmaker Redirects
