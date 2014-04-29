@@ -351,6 +351,7 @@ app.get("/privacy-makes", routes.gallery({
 }));
 
 // Badges
+app.get("/badges-admin", routes.badges(env).admin);
 app.get("/badges/:badge?", routes.badges(env).details);
 app.post("/badges/:badge/apply", routes.badges(env).apply);
 

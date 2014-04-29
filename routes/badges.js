@@ -8,6 +8,11 @@ module.exports = function (env) {
   });
 
   return {
+    admin: function (req, res, next) {
+      res.render('badge-admin.html', {
+        page: 'badges'
+      });
+    },
     details: function (req, res, next) {
       badgeClient.getBadge({
         system: env.get('BADGES_SYSTEM'),
