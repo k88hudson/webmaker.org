@@ -37,6 +37,9 @@ define(['jquery', 'eventEmitter/EventEmitter', 'base/login'],
 
     // An application error occurred
     emitter.on('error', function (err) {
+      if (err.responseJSON) {
+        $error.find('.error-message').html('(' + err.responseJSON.error + ')');
+      }
       $success.addClass('hidden');
       $successIssued.addClass('hidden');
       $error.removeClass('hidden');
@@ -81,7 +84,7 @@ define(['jquery', 'eventEmitter/EventEmitter', 'base/login'],
         _csrf: $('meta[name="csrf-token"]').attr("content")
       })
         .done(function (data) {
-          emitter.emitEvent('badge-issued');
+          emitter.emitEvent('submit-application');
         })
         .fail(function (err) {
           emitter.emitEvent('error', [err]);
@@ -96,7 +99,7 @@ define(['jquery', 'eventEmitter/EventEmitter', 'base/login'],
         _csrf: $('meta[name="csrf-token"]').attr("content")
       })
         .done(function (data) {
-          emitter.emitEvent('submit-issue');
+          emitter.emitEvent('badge-issued');
         })
         .fail(function (err) {
           emitter.emitEvent('error', [err]);

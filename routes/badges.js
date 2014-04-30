@@ -54,7 +54,7 @@ module.exports = function (env) {
         application: application
       }, function (err, data) {
         if (err) {
-          return next(err);
+          return res.send(500, err);
         }
         res.send(data);
       });
@@ -62,10 +62,14 @@ module.exports = function (env) {
     issue: function ( req, res, next) {
 
       if ( req.params.badge === 'webmaker-super-mentor' ) {
-        return next('Sorry, you cannot issue a super mentor badge directly. Please have your applicant apply instead.');
+        return res.send(400, {
+          error: 'Sorry, you cannot issue a super mentor badge directly. Please have your applicant apply instead.'
+        });
       }
-      if (!req.session.user || !req.session.user.isAdmin || !req.session.user.isCollaborator ) {
-        return next('Sorry, you must be an admin or collaborator to issue badges');
+      if (!req.session.user || !(req.session.user.isAdmin || req.session.user.isCollaborator)) {
+        return res.send(400, {
+          error: 'Sorry, you must be an admin or collaborator to issue badges'
+        });
       }
 
       var query = {
@@ -76,8 +80,9 @@ module.exports = function (env) {
       };
 
       badgeClient.createBadgeInstance(query, function (err, data) {
+        var errorString = err.toString();
         if (err) {
-          return next(err);
+          return res.send(500, { error: errorString});
         }
         res.send(data);
       });
