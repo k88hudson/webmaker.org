@@ -9,13 +9,15 @@ define(['jquery', 'eventEmitter/EventEmitter', 'base/login'],
     var $issueBadgeBtn = $('#js-badge-issuing');
     var $applicationForm = $('#submit-badge-application');
     var $application = $('#application');
-    var $error = $('#submit-badge-error');
+    var $error = $('.submit-badge-error');
     var $success = $('#submit-badge-success');
+    var $successIssued = $('#issue-badge-success');
     var $loginOnly = $('.login-only');
     var $logoutOnly = $('.logout-only');
     var $applicationOn = $('.application-on');
     var $applicationOff = $('.application-off');
     var $issueBadgeOn = $('.js-issue-badge-on');
+    var $issueForm = $('#issue-form');
 
     var slug = $application.attr('data-badge-slug');
 
@@ -26,9 +28,17 @@ define(['jquery', 'eventEmitter/EventEmitter', 'base/login'],
       $application.addClass('hidden');
     });
 
+    // An application was submitted successfully
+    emitter.on('badge-issued', function () {
+      $successIssued.removeClass('hidden');
+      $error.addClass('hidden');
+      $issueForm.addClass('hidden');
+    });
+
     // An application error occurred
-    emitter.on('submit-application-error', function (err) {
+    emitter.on('error', function (err) {
       $success.addClass('hidden');
+      $successIssued.addClass('hidden');
       $error.removeClass('hidden');
     });
 
@@ -71,10 +81,25 @@ define(['jquery', 'eventEmitter/EventEmitter', 'base/login'],
         _csrf: $('meta[name="csrf-token"]').attr("content")
       })
         .done(function (data) {
-          emitter.emitEvent('submit-application');
+          emitter.emitEvent('badge-issued');
         })
         .fail(function (err) {
-          emitter.emitEvent('submit-application-error', [err]);
+          emitter.emitEvent('error', [err]);
+        });
+    });
+
+    $issueForm.on('submit', function (e) {
+      e.preventDefault();
+      $.post('/badges/' + slug + '/issue', {
+        email: $issueForm.find('[name="email"]').val(),
+        comment: $issueForm.find('[name="comment""]').val(),
+        _csrf: $('meta[name="csrf-token"]').attr("content")
+      })
+        .done(function (data) {
+          emitter.emitEvent('submit-issue');
+        })
+        .fail(function (err) {
+          emitter.emitEvent('error', [err]);
         });
     });
 

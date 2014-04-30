@@ -377,6 +377,7 @@
   "BadgeNotFound": "Badge not found!",
   "BadgeNotFoundDesc": "Sorry, looks like that badge doesn't exist in our system.",
   "NoBadgeHere": "No badge here!",
+  "IssuedBadgeSuccess": "Your badge was issued successfully.",
   "BadgesIssuedBy": "Issued by:",
   "GotApplication": "Thanks for submitting!",
   "ReplyToEmail": "We will let you know via email (<strong class=\"webmaker-email-placeholder\"></strong>) whether or not your application has been approved.",
@@ -388,5 +389,6 @@
   "Submit with a claim code here": "Submit with a claim code here",
   "Badge Requirements": "Badge Requirements",
   "Apply now": "Apply now",
-  "Login to apply": "Login to apply"
+  "Login to apply": "Login to apply",
+  "Issue Badge": "Issue Badge"
 }
