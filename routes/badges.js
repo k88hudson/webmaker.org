@@ -80,9 +80,11 @@ module.exports = function (env) {
       };
 
       badgeClient.createBadgeInstance(query, function (err, data) {
-        var errorString = err.toString();
         if (err) {
-          return res.send(500, { error: errorString});
+          var errorString = err.toString();
+          return res.send(500, {
+            error: errorString
+          });
         }
         res.send(data);
       });
