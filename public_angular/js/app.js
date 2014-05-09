@@ -48,9 +48,9 @@ angular.module('exploreApp', ['ngRoute', 'ui.bootstrap', 'exploreApp.services', 
 
       // Set up Kits
       $http
-        .get('data/kits.json')
+        .get('data/content.json')
         .success(function (data) {
-          $rootScope.kits = data;
+          $rootScope.content = data;
         });
       $http
         .get('data/mentors.json')

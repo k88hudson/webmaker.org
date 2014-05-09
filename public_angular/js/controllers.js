@@ -106,7 +106,7 @@ angular
       return item.tag === $scope.tag;
     })[0];
 
-    $scope.kits = $rootScope.kits[$scope.tag];
+    $scope.content = $rootScope.content[$scope.tag];
 
     $scope.skillMentors = $rootScope.mentors.filter(function (mentor) {
       return mentor.competencies.filter(function (competency) {
