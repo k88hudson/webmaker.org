@@ -12,19 +12,19 @@
 @import 'front-page';
 @import 'kits';
 @import 'sidebar';
+@import 'competency';
+@import 'competency-mentors';
 
 /*********************************************************
 * To be merged in makerstrap
 */
 
-// Grid
-@container-xl: 1580px;
-@screen-xl-min: 1620px;
+.text-lightgrey {
+  color: @lightgrey;
+}
 
-.container {
-  @media (min-width: @screen-xl-min) {
-    width: @container-xl;
-  }
+.text-secondary {
+  color: @navy;
 }
 
 .text-primary {
@@ -55,7 +55,6 @@
   font-weight: normal;
   font-size: 13px;
   .nav > li > a {
-    padding: 18px 15px;
     color: fade(white, 80%);
     &:hover {
       background: none;
@@ -64,6 +63,11 @@
   }
   .nav > li.active > a {
     color: white;
+  }
+  .nav .open > a,
+  .nav .open > a:hover,
+  .nav .open > a:focus {
+    background-color: lighten(#01527D, 5%);
   }
 }
 
@@ -157,9 +161,106 @@
 
 }
 
-// .page-header {
-//   border-bottom: none;
-// }
+// For the title of a fixed menu
+.navbar-nav > li.nav-title a {
+  margin-left: -20px;
+  margin-right: 10px;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*********************************************************
+* Dropdown
+*/
+
+.dropdown-menu {
+  background: lighten(#01527D, 5%);
+  border: none;
+  width: 400px;
+}
+
+.dropdown-menu > li {
+  width: 200px;
+  float: left;
+}
+
+.dropdown-menu>li>a {
+  color: white;
+  font-size: 12px;
+  padding: 8px 20px;
+
+  &:hover {
+    color: white;
+  }
+
+  &.color-0:hover {
+    background-color: @literacy-color-navigation;
+  }
+
+  &.color-1:hover {
+    background-color: @literacy-color-web-mechanics;
+  }
+
+  &.color-2:hover {
+    background-color: @literacy-color-search;
+  }
+
+  &.color-3:hover {
+    background-color: @literacy-color-credibility;
+  }
+
+  &.color-4:hover {
+    background-color: @literacy-color-security;
+  }
+
+  &.color-5:hover {
+    background-color: @literacy-color-composing;
+  }
+
+  &.color-6:hover {
+    background-color: @literacy-color-remixing;
+  }
+
+  &.color-7:hover {
+    background-color: @literacy-color-design-accessibility;
+  }
+
+  &.color-8:hover {
+    background-color: @literacy-color-coding-scripting;
+  }
+
+  &.color-9:hover {
+    background-color: @literacy-color-infrastructure;
+  }
+
+  &.color-10:hover {
+    background-color: @literacy-color-sharing;
+  }
+
+  &.color-11:hover {
+    background-color: @literacy-color-collaborating;
+  }
+
+  &.color-12:hover {
+    background-color: @literacy-color-community-participation;
+  }
+
+  &.color-13:hover {
+    background-color: @literacy-color-privacy;
+  }
+
+  &.color-14:hover {
+    background-color: @literacy-color-open-practices;
+  }
+}
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+  background-color: #01527D;
+}
+
+.page-header.no-border {
+  border-bottom: none;
+}
 
 /*********************************************************
 * Resets
@@ -182,53 +283,37 @@ img {
 // Fixed sidebar
 @explore-sidebar-width: 300px;
 
-.explore-main {
-  .container {
-    @media (min-width: @screen-md-min) {
-      width: @container-md - @explore-sidebar-width;
-    }
-    @media (min-width: @screen-lg-min) {
-      width: @container-lg - @explore-sidebar-width;
-    }
-    @media (min-width: @screen-lg-min) {
-      width: @container-lg - @explore-sidebar-width;
-    }
-    @media (min-width: @screen-xl-min) {
-      width: @container-xl - @explore-sidebar-width;
-    }
-  }
-}
 
 /*********************************************************
 * Base
 */
 
-@media screen and (min-width: @screen-sm) {
-  html,
-  body,
-  .wrapper {
-    height: 100%;
-  }
+// @media screen and (min-width: @screen-sm) {
+//   html,
+//   body,
+//   .wrapper {
+//     height: 100%;
+//   }
 
-  body {
-    overflow: hidden;
-  }
+//   body {
+//     overflow: hidden;
+//   }
 
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-  }
-  .main {
-    display: flex;
-    flex: 1;
-  }
-  .explore-main {
-    flex-grow: 1;
-    overflow: auto;
-  }
+//   .wrapper {
+//     display: flex;
+//     flex-direction: column;
+//     min-height: 100%;
+//   }
+//   .main {
+//     display: flex;
+//     flex: 1;
+//   }
+//   .explore-main {
+//     flex-grow: 1;
+//     overflow: auto;
+//   }
 
-}
+// }
 
 
 [ng-cloak],
@@ -254,173 +339,3 @@ img {
     font-size: 50px;
   }
 }
-
-/*********************************************************
-* Competency pages
-*/
-
-h3 {
-  font-size: 24px;
-  font-weight: 200;
-}
-
-.mentor-container {
-  display: block;
-  color: inherit;
-  &:hover {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  height: 400px;
-  @media (min-width: @screen-xl-min) {
-    height: 450px;
-  }
-}
-
-.mentor-circle-btn {
-  display: block;
-  background: @brand-primary;
-  border-radius: 50%;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-
-  &:hover {
-    background: lighten(@brand-primary, 10%);
-    color: white;
-  }
-
-  span {
-    position: absolute;
-    top: 50%;
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 15px;
-    margin-left: -15px;
-    margin-top: -1.75em;
-  }
-
-  img {
-    visibility: hidden;
-  }
-}
-
-.btn-create-kit {
-  width: 80px;
-  height: 80px;
-  line-height: 80px;
-  font-size: 20px;
-  padding: 0;
-  margin-bottom: 15px;
-  border: 1px dashed #999;
-  color: #999;
-}
-
-.well-create-kit {
-  box-shadow: none;
-  padding: 40px;
-  margin: 30px 0;
-}
-
-// The skills for each competency
-.list-web-literacy-points {
-  line-height: 1.8;
-}
-
-// Tabs
-.tab-pane .row {
-  margin-top: @grid-gutter-width;
-}
-
-.mentor {
-  display: block;
-  position: relative;
-
-  .img-mentor-avatar {
-    width: 100%;
-    -webkit-transform: scale(0.9);
-    transition: all 150ms ease-in;
-  }
-  .laurel {
-    position: absolute;
-    top: -5px;
-    width: 60%;
-    transition: all 200ms ease-in;
-    opacity: 0;
-    z-index: 1;
-
-    &.laurel-left {
-      html[dir="ltr"] & {
-        left: 0;
-      }
-      html[dir="rtl"] & {
-        right: 0;
-      }
-      -webkit-transform: rotate(90deg);
-      -webkit-transform-origin: 100% 50%;
-    }
-    &.laurel-right {
-      html[dir="ltr"] & {
-        right: 0;
-      }
-      html[dir="rtl"] & {
-        left: 0;
-      }
-      -webkit-transform: rotate(-90deg);
-      -webkit-transform-origin: 0 50%;
-    }
-  }
-
-  .mentor-gif {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 0;
-    width: 100%;
-    padding-bottom: 100%;
-    border-radius: 200%;
-    opacity: 0;
-    background-position: center;
-    background-size: cover;
-  }
-
-  &:hover {
-    cursor: pointer;
-
-    .laurel {
-      -webkit-transform: rotate(0);
-      opacity: 1;
-    }
-    html[dir="ltr"] & {
-      .laurel-left {
-        left: -15px;
-      }
-      .laurel-right {
-        right: -15px;
-      }
-    }
-    html[dir="rtl"] & {
-      .laurel-left {
-        right: -15px;
-      }
-      .laurel-right {
-        left: -15px;
-      }
-    }
-    .img-mentor-avatar {
-      -webkit-transform: scale(1);
-    }
-    .mentor-gif {
-      opacity: 1;
-    }
-  }
-
-  margin-bottom: 20px;
-}
-
-

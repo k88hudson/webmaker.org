@@ -7,6 +7,10 @@ angular.module('exploreApp', ['ngRoute', 'ui.bootstrap', 'exploreApp.services', 
         templateUrl: 'views/main.html',
         controller: 'mainController'
       })
+      .when('/teach', {
+        templateUrl: 'views/teach.html',
+        controller: 'teachController'
+      })
       .when('/competencies/:id', {
         templateUrl: 'views/competency.html',
         controller: 'competencyController'

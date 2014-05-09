@@ -2,6 +2,10 @@
 
 angular
   .module('exploreApp')
+  .controller('teachController', ['$scope', 'CONFIG',
+    function ($scope, CONFIG) {
+    }
+  ])
   .controller('mainController', ['$scope', 'CONFIG',
     function ($scope, CONFIG) {
       $scope.contributeBoxes = [
@@ -73,6 +77,22 @@ angular
       // Jump to top of viewport when new views load
       $rootScope.$on('$locationChangeSuccess', function (event) {
         window.scrollTo(0, 0);
+      });
+
+      var elHeight = '56px';
+      var elTop = 150;
+
+      $(window).scroll(function() {
+        var scrollTop = $(this).scrollTop();
+        if (scrollTop >= elTop) {
+          $('body').css('padding-top', elHeight);
+          $scope.scrolledDown = true;
+          $scope.$apply();
+        } else {
+          $('body').css('padding-top', 0);
+          $scope.scrolledDown = false;
+          $scope.$apply();
+        }
       });
 
     }

@@ -23,6 +23,36 @@ angular
       };
     }
   ])
+  .directive('scrollSidebar', ['$window',
+    function($window) {
+      return {
+        restrict: 'EA',
+        priority: 0,
+        link: function(scope, el, attrs) {
+          var windowEl = $($window);
+          var offset = +attrs.offset;
+          var elTop = el.offset().top + offset;
+
+          windowEl.scroll(function() {
+            var scrollTop = windowEl.scrollTop();
+            if (scrollTop >= elTop) {
+              el.css({
+                position:'fixed',
+                top: offset + 'px'
+              });
+
+            } else {
+              el.css({
+                position: '',
+                top: ''
+              });
+            }
+          });
+
+        }
+      };
+    }
+  ])
   .directive('retinaImage', ['$window',
     function ($window) {
       'use strict';

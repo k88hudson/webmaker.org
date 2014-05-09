@@ -1,0 +1,184 @@
+
+/*********************************************************
+* Competency pages
+*/
+
+.competency-page {
+  h3 {
+    font-size: 24px;
+    font-weight: 200;
+  }
+
+  h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #999;
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 0.5em;
+    letter-spacing: 0.05em;
+  }
+
+  .lead {
+    font-size: 1.8em;
+  }
+  p {
+    line-height: 1.8;
+    font-size: 16px;
+  }
+  .header-section {
+    margin-bottom: 40px;
+    font-weight: 200;
+    color: #999;
+    font-size: 45px;
+    .fa {
+      background: @lightgrey;
+      color: @brand-secondary;
+      border-radius: 50%;
+      padding: 30px;
+      font-size: 0.6em;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  }
+  .header-divider {
+    margin: 20px 0;
+    text-align: center;
+    border-bottom: 0;
+    white-space: nowrap;
+    &:before,
+    &:after {
+      content: '';
+      display: inline-block;
+      height: 1px;
+      width: 100px;
+      background: #CCC;
+      vertical-align: middle;
+    }
+    &:before {
+      margin-right: 10px;
+    }
+    &:after {
+      margin-left: 10px;
+    }
+  }
+  .main-competency {
+    padding-bottom: 40px;
+  }
+}
+
+
+.fixed-toc {
+  font-size: 18px;
+  ul {
+    .list-unstyled;
+    li > {
+      margin-bottom: 0.5em;
+    }
+
+  }
+}
+
+
+.list.list-subway {
+  padding-left: 40px;
+  font-size: 18px;
+  > li {
+    color: inherit;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    border-left: 5px solid;
+    // Needed for resetting text colour
+    > div {
+      color: #555;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    &:first-child:before {
+      border-width: 15px;
+    }
+    &:before {
+      content: '';
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border-radius: 50%;
+      right: auto;
+      left: -3px;
+      color: inherit;
+      border: 2px solid;
+      background: white;
+    }
+    &:last-child {
+      border-color: transparent;
+    }
+  }
+
+}
+
+.btn-create-kit {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  font-size: 20px;
+  padding: 0;
+  margin-bottom: 15px;
+  border: 1px dashed #999;
+  color: #999;
+}
+
+.well-create-kit,
+.well-grey {
+  box-shadow: none;
+  border: none;
+  background: @lightgrey;
+  color: #999;
+  padding: 40px;
+  margin: 30px 0;
+  h1, h2, h3 {
+    margin: 0;
+  }
+}
+
+
+// The skills for each competency
+// This is copied from badges
+.list.list-checkmarks {
+  line-height: 1.8;
+  background: #F5F5F5;
+  list-style: none;
+  padding: @grid-gutter-width;
+  border-top: 1px solid darken(#F5F5F5, 5%);
+  border-bottom: 1px solid darken(#F5F5F5, 5%);
+  > li {
+    padding-left: 1em;
+    margin-bottom: 1em;
+    position: relative;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    &:before {
+      content: '\f00c';
+      color: @green;
+      position: absolute;
+      left: 0;
+      font-family: FontAwesome;
+      font-weight: normal;
+      font-style: normal;
+      text-decoration: inherit;
+      -webkit-font-smoothing: antialiased;
+      *margin-right: .3em; // fixes ie7 issues
+    }
+  }
+}
+
+footer.footer-competency {
+  color: white;
+  padding: 20px 20px 80px;
+  h4 {
+    color: white;
+    border: none;
+  }
+}
+
+
