@@ -1,144 +1,146 @@
-<div class="jumbotron" style="background: {{ skill.color }}">
+<div class="competency-page">
+  <div class="jumbotron" style="background: {{ skill.color }}">
+    <div class="container">
+      <h1>{{ skill.term }}</h1>
+      <p>{{ skill.description }}</p>
+    </div>
+  </div>
+
   <div class="container">
-    <h1>{{ skill.term }}</h1>
-    <p>{{ skill.description }}</p>
-  </div>
-</div>
 
-<div class="container competency-page">
-
-  <div class="row">
-    <div class="col-sm-8">
-      <p class="lead">{{ content.intro }}</p>
-    </div>
-
-    <div class="col-sm-4">
-      <h3>{{ 'Skills' | i18n }}</h3>
-      <ul class="list list-checkmarks">
-        <li ng-repeat="point in wlcPoints[skill.tag]">{{point | i18n }}</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="well well-grey">
-    <h3>Help us find great community content <a href="#" class="btn btn-lg btn-success">
-        <span class="fa fa-plus"></span> Suggest a resource
-      </a></h3>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-2">
-      <aside class="fixed-toc" scroll-sidebar offset="80">
-        <h4>Jump to</h4>
-        <ul>
-          <li>
-            <span class="fa-stack">
-              <span class="fa fa-circle fa-stack-2x text-lightgrey"></span>
-              <span class="fa fa-random fa-stack-1x text-secondary"></span>
-            </span> Discover
-          </li>
-          <li>
-            <span class="fa-stack">
-              <span class="fa fa-circle fa-stack-2x text-lightgrey"></span>
-              <span class="fa fa-hand-o-up fa-stack-1x text-secondary"></span>
-            </span> Make</li>
-          <li>
-            <span class="fa-stack">
-              <span class="fa fa-circle fa-stack-2x text-lightgrey"></span>
-              <span class="fa fa-book fa-stack-1x text-secondary"></span>
-            </span> Teach</li>
-        </ul>
-      </aside>
-    </div>
-    <div class="col-sm-10 main-competency">
-        <h2 class="header-section"><span class="fa fa-random"></span> Discover</h2>
-
-        <ul ng-repeat="item in content.discover" class="list list-subway list-subway-{{skill.tag}}" style="color:{{skill.color}};">
-          <li>
-            <div>
-              <h2 ng-bind-html="item.title"></h2>
-              <p ng-bind-html="item.description"></p>
-            </div>
-          </li>
-          <li ng-repeat="link in item.links">
-            <div>
-              <p ng-bind-html="link"></p>
-            </div>
-          </li>
-        </ul>
-
-        <h2 class="header-section"><span class="fa fa-hand-o-up"></span> Make</h2>
-
-        <ul ng-repeat="item in content.make" class="list list-subway list-subway-{{skill.tag}}" style="color:{{skill.color}};">
-          <li>
-            <div>
-              <h2 ng-bind-html="item.title"></h2>
-            </div>
-          </li>
-          <li>
-            <div>
-              <p ng-bind-html="item.description"></p>
-            </div>
-          </li>
-        </ul>
-
-        <h2 class="header-section">
-          <span class="fa fa-book"></span> Teach
-        </h2>
-
-        <h4 class="header-divider">Featured Teaching Resources</h4>
-
-        <div ng-hide="content.teach.kits.length" class="well well-create-kit text-center">
-          <button class="btn btn-default btn-create-kit"><span class="fa fa-plus"></span></button>
-          <p class="text-muted" ng-bind-html="'noStaffPick' | i18n"></p>
-        </div>
-
-        <div class="row">
-          <div ng-repeat="kit in content.teach.kits" class="col-sm-6 col-lg-4">
-            <a target="_blank" class="thumbnail thumbnail-staff-pick thumbnail-{{kit.type}}" href="{{kit.url}}">
-              <div class="caption">
-                <h3>{{ kit.title }}</h3>
-                <p class="text-muted">{{ 'By' | i18n }} {{ kit.author }}</p>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <h4 class="header-divider">More Resources</h4>
-
-        <ul ng-repeat="item in content.teach.more" class="list list-subway list-subway-{{skill.tag}}" style="color:{{skill.color}};">
-          <li>
-            <div>
-              <h2 ng-bind-html="item.title"></h2>
-            </div>
-          </li>
-          <li>
-            <div>
-              <p ng-bind-html="item.description"></p>
-            </div>
-          </li>
-        </ul>
-
-        <div class="row">
-          <div class="col-sm-4" ng-repeat="cta in content.ctas">
-            <h3 class="text-primary" ng-bind-html="cta.title"></h3>
-            <p ng-bind-html="cta.description"></p>
-            <p><a href="cta.link" class="btn btn-success">Learn more</a></p>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <p class="lead">{{ content.intro }}</p>
       </div>
 
+      <div class="col-sm-4">
+        <h3>{{ 'Skills' | i18n }}</h3>
+        <ul class="list list-checkmarks">
+          <li ng-repeat="point in wlcPoints[skill.tag]">{{point | i18n }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="well well-grey">
+      <h3>Help us find great community content <a href="#" class="btn btn-lg btn-success pull-right">
+          <span class="fa fa-plus"></span> Suggest a resource
+        </a></h3>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <aside class="fixed-toc" scroll-sidebar offset="80">
+          <h4>Jump to</h4>
+          <ul>
+            <li>
+              <span class="fa-stack">
+                <span class="fa fa-circle fa-stack-2x text-lightgrey"></span>
+                <span class="fa fa-random fa-stack-1x text-secondary"></span>
+              </span> Discover
+            </li>
+            <li>
+              <span class="fa-stack">
+                <span class="fa fa-circle fa-stack-2x text-lightgrey"></span>
+                <span class="fa fa-hand-o-up fa-stack-1x text-secondary"></span>
+              </span> Make</li>
+            <li>
+              <span class="fa-stack">
+                <span class="fa fa-circle fa-stack-2x text-lightgrey"></span>
+                <span class="fa fa-book fa-stack-1x text-secondary"></span>
+              </span> Teach</li>
+          </ul>
+        </aside>
+      </div>
+      <div class="col-sm-10 main-competency">
+          <h2 class="header-section"><span class="fa fa-random"></span> Discover</h2>
+
+          <ul ng-repeat="item in content.discover" class="list list-subway list-subway-{{skill.tag}}" style="color:{{skill.color}};">
+            <li>
+              <div>
+                <h2 ng-bind-html="item.title"></h2>
+                <p ng-bind-html="item.description"></p>
+              </div>
+            </li>
+            <li ng-repeat="link in item.links">
+              <div>
+                <p ng-bind-html="link"></p>
+              </div>
+            </li>
+          </ul>
+
+          <h2 class="header-section"><span class="fa fa-hand-o-up"></span> Make</h2>
+
+          <ul ng-repeat="item in content.make" class="list list-subway list-subway-{{skill.tag}}" style="color:{{skill.color}};">
+            <li>
+              <div>
+                <h2 ng-bind-html="item.title"></h2>
+              </div>
+            </li>
+            <li>
+              <div>
+                <p ng-bind-html="item.description"></p>
+              </div>
+            </li>
+          </ul>
+
+          <h2 class="header-section">
+            <span class="fa fa-book"></span> Teach
+          </h2>
+
+          <h4 class="header-divider">Featured Teaching Resources</h4>
+
+          <div ng-hide="content.teach.kits.length" class="well well-create-kit text-center">
+            <button class="btn btn-default btn-create-kit"><span class="fa fa-plus"></span></button>
+            <p class="text-muted" ng-bind-html="'noStaffPick' | i18n"></p>
+          </div>
+
+          <div class="row">
+            <div ng-repeat="kit in content.teach.kits" class="col-sm-6 col-lg-4">
+              <a target="_blank" class="thumbnail thumbnail-staff-pick thumbnail-{{kit.type}}" href="{{kit.url}}">
+                <div class="caption">
+                  <h3>{{ kit.title }}</h3>
+                  <p class="text-muted">{{ 'By' | i18n }} {{ kit.author }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <h4 class="header-divider">More Resources</h4>
+
+          <ul ng-repeat="item in content.teach.more" class="list list-subway list-subway-{{skill.tag}}" style="color:{{skill.color}};">
+            <li>
+              <div>
+                <h2 ng-bind-html="item.title"></h2>
+              </div>
+            </li>
+            <li>
+              <div>
+                <p ng-bind-html="item.description"></p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="row ctas">
+            <div class="col-sm-4" ng-repeat="cta in content.ctas">
+              <h3 class="text-primary" ng-bind-html="cta.title"></h3>
+              <p ng-bind-html="cta.description"></p>
+              <p><a href="cta.link" class="btn btn-success">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
+
+  <footer class="footer-competency" style="background-color: {{skill.color}}">
+    <div class="container">
+      <div class="col-sm-10 col-sm-offset-2">
+        <h4>You might also like</h4>
+
+        <h1><span class="fa fa-lock"></span> Security</h1>
+        <p class="lead">Learn how to keep systems, identities and content safe</p>
+      </div>
+    </div>
+  </footer>
 </div>
-
-<footer class="footer-competency" style="background-color: {{skill.color}}">
-  <div class="container">
-    <div class="col-sm-10 col-sm-offset-2">
-      <h4>You might also like</h4>
-
-      <h2><span clas="fa fa-lock fa-fw"></span> Security</h2>
-      <p class="lead">Learn how to keep systems, identities and content safe</p>
-    </div>
-  </div>
-</footer>

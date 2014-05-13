@@ -4,6 +4,8 @@
 */
 
 .competency-page {
+  line-height: 1.8;
+  font-size: 16px;
   h3 {
     font-size: 24px;
     font-weight: 200;
@@ -19,11 +21,8 @@
   }
 
   .lead {
+    margin-top: 1em;
     font-size: 1.8em;
-  }
-  p {
-    line-height: 1.8;
-    font-size: 16px;
   }
   .header-section {
     margin-bottom: 40px;
@@ -62,7 +61,10 @@
     }
   }
   .main-competency {
-    padding-bottom: 40px;
+    padding-bottom: 80px;
+  }
+  .ctas {
+    padding: 40px 0;
   }
 }
 
@@ -138,13 +140,16 @@
   h1, h2, h3 {
     margin: 0;
   }
+  .btn {
+    margin-top: -5px;
+  }
 }
 
 
 // The skills for each competency
 // This is copied from badges
 .list.list-checkmarks {
-  line-height: 1.8;
+  line-height: 1.6;
   background: #F5F5F5;
   list-style: none;
   padding: @grid-gutter-width;
@@ -175,9 +180,16 @@
 footer.footer-competency {
   color: white;
   padding: 20px 20px 80px;
+  h1 {
+    font-weight: 200;
+    margin: 20px 0;
+  }
   h4 {
     color: white;
     border: none;
+  }
+  .fa {
+    margin-right: 10px;
   }
 }
 
