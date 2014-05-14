@@ -37,9 +37,13 @@ angular
             if (scrollTop >= elTop) {
               $('body').css('padding-top', elHeight);
               el.addClass('navbar-affix-top');
+              scope.affixed = true;
+              scope.$apply();
             } else {
               $('body').css('padding-top', 0);
               el.removeClass('navbar-affix-top');
+              scope.affixed = false;
+              scope.$apply();
             }
           }, false);
         }

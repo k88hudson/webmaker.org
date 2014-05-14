@@ -72,11 +72,11 @@
         <div class="container">
           <div class="navbar-collapse" collapse="isCollapsed">
             <ul class="nav navbar-nav">
-              <li ng-show="scrolledDown" class="nav-icon nav-title active">
-                <a href="#!"><span class="fa fa-random"></span> Explore</a>
+              <li ng-show="affixed" class="nav-icon nav-title active">
+                <a href="#!"><span class="fa fa-random"></span> {{ 'Explore' | i18n }}</a>
               </li>
               <li class="dropdown dropdown-toc hidden-xs">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Web Literacies <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ 'Web Literacies' | i18n }}<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li
                     ng-repeat="skill in literacies"
@@ -87,16 +87,16 @@
                 </ul>
               </li>
               <li>
-                <a href="/{{lang}}/teach-templates">Teaching templates</a>
+                <a href="/{{lang}}/teach-templates">{{test}}{{ 'Teaching templates' | i18n }}</a>
               </li>
               <li>
-                <a href="/{{lang}}/literacy">Documentation</a>
+                <a href="/{{lang}}/literacy">{{ 'Web Literacy Map' | i18n }}</a>
               </li>
             </ul>
           </div>
           <div class="mobile-skills-nav visible-xs">
             <ul class="nav navbar-nav">
-              <li><a href="#" ng-click="mobileTocCollapse = !mobileTocCollapse">Web Literacies <span class="caret"></span></a></li>
+              <li><a href="#" ng-click="mobileTocCollapse = !mobileTocCollapse">{{ 'Web Literacies' | i18n }} <span class="caret"></span></a></li>
             </ul>
             <ul class="nav navbar-nav" collapse="mobileTocCollapse">
 
