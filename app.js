@@ -122,8 +122,8 @@ if (env.get("ENABLE_GELF_LOGS")) {
 }
 
 // Proxy to profile-2
-if (env.get('NEW_PROFILE_URL')) {
-  app.use('/user', proxy(url.parse(env.get('NEW_PROFILE_URL'))));
+if (env.get('PROFILE_URL')) {
+  app.use('/user', proxy(url.parse(env.get('PROFILE_URL'))));
 }
 
 app.use(helmet.iexss());
