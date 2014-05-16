@@ -44,7 +44,8 @@
     "webmaker-translation-stats": "0.0.1",
     "webmaker-loginapi": "https://github.com/mozilla/node-webmaker-loginapi/tarball/v0.1.18",
     "web-literacy-client": "1.1.1",
-    "webmaker-postalservice": "https://github.com/mozilla/node-webmaker-postalservice/tarball/v0.2.6"
+    "webmaker-postalservice": "https://github.com/mozilla/node-webmaker-postalservice/tarball/v0.2.6",
+    "proxy-middleware": "^0.5.0"
   },
   "devDependencies": {
     "colors": "0.6.2",
