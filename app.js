@@ -247,7 +247,7 @@ i18n.addLocaleObject({
 app.use(express.csrf());
 
 app.locals({
-  makeEndpoint: env.get("MAKE_ENDPOINT"),
+  makeEndpoint: env.get("MAKE_ENDPOINT_READONLY") || env.get("MAKE_ENDPOINT"),
   newrelic: newrelic,
   personaSSO: env.get("AUDIENCE"),
   loginAPI: env.get("LOGIN"),
