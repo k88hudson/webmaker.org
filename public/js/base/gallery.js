@@ -51,7 +51,7 @@ define(['jquery', 'nunjucks', 'base/ui', 'moment', 'makeapi', 'localized', 'maso
       // Nunjucks
       // Todo - nunjucks middleware
       var makeView = 'make-templates/' + options.makeView;
-      nunjucks.env = new nunjucks.Environment(new nunjucks.HttpLoader('/templates', true));
+      nunjucks.env = new nunjucks.Environment(new nunjucks.WebLoader('/templates', true));
 
       // Making a custom filter to use it for the client-side l10n
       // Using this filter will help reduce the number of adding
