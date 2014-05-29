@@ -59,6 +59,7 @@ angular.module('webmakerApp', ['ngRoute', 'ui.bootstrap', 'webmakerApp.services'
       });
 
       // Set up content for competency
+      $rootScope.content = [];
       $http
         .get('data/content.json')
         .success(function (data) {
