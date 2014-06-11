@@ -2,6 +2,7 @@ requirejs.config({
   baseDir: '/js',
   paths: {
     'something': '/bower_components/something.js',
+    'blah': "something",
     'cookie-js': '/bower_components/cookie-js',
     'text': '/bower_components/text/text',
     'jquery': '/bower_components/jquery/jquery.min',
