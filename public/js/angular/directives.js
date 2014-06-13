@@ -238,8 +238,8 @@ angular
       template: '<img class="maker-party-arrow" src="/img/home/maker-party-arrow.svg">'
     };
   })
-  .directive('languageSelect', [ 'CONFIG',
-    function (config) {
+  .directive('languageSelect', [ 'CONFIG', '$timeout',
+    function (config, $timeout) {
       return {
         restrict: 'A',
         link: function ($scope, $element) {
@@ -252,15 +252,16 @@ angular
               title: config.langmap[lang] ? config.langmap[lang].englishName + ' - ' + config.langmap[lang].nativeName : lang
             });
           }
-
-          $element.selectize({
-            options: options,
-            labelField: 'title',
-            valueField: 'id',
-            searchField: ['title']
+          $timeout(function() {
+            $element.selectize({
+              options: options,
+              labelField: 'title',
+              valueField: 'id',
+              searchField: ['title']
+            });
+            var selectize = $element[0].selectize;
+            selectize.setValue('en-US');
           });
-          var selectize = $element[0].selectize;
-          selectize.setValue('en-US');
         }
       };
     }
