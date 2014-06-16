@@ -238,7 +238,7 @@ angular
       template: '<img class="maker-party-arrow" src="/img/home/maker-party-arrow.svg">'
     };
   })
-  .directive('languageSelect', [ 'CONFIG', '$timeout',
+  .directive('languageSelect', ['CONFIG', '$timeout',
     function (config, $timeout) {
       return {
         restrict: 'A',
@@ -252,7 +252,7 @@ angular
               title: config.langmap[lang] ? config.langmap[lang].englishName + ' - ' + config.langmap[lang].nativeName : lang
             });
           }
-          $timeout(function() {
+          $timeout(function () {
             $element.selectize({
               options: options,
               labelField: 'title',
