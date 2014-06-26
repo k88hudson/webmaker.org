@@ -53,19 +53,7 @@ angular
             url: 'resources',
             title: 'Resources',
             icon: 'book',
-            pushState: true,
-            pages: [
-              {
-                id: 'make-our-own',
-                title: 'Make Your Own',
-                url: 'make-your-own'
-              },
-              {
-                id: 'literacy',
-                title: 'Web Literacy Map',
-                url: 'literacy'
-              }
-            ]
+            pushState: true
           },
           {
             id: 'events',
