@@ -53,7 +53,8 @@ angular
             url: 'resources',
             title: 'Resources',
             icon: 'book',
-            pushState: true
+            pushState: true,
+            pages: [{}]
           },
           {
             id: 'events',
