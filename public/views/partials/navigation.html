@@ -50,6 +50,9 @@
         <!-- Weblit dropdown -->
           <a ng-if="section.id === 'resources'"  href="#" class="dropdown-toggle"><span class="fa fa-{{section.icon}}"></span> {{ 'Resources' | i18n }} <span class="caret"></a>
           <ul class="explore-dropdown-menu dropdown-menu">
+            <li class="literacy">
+              <a href="{{baseUrl}}resources" class="color-10">{{ 'Overview' | i18n }}</a>
+            </li>
             <li
               ng-repeat="skill in literacies"
               class="literacy"
@@ -82,13 +85,26 @@
   ng-if="section.pages"
   ng-show="isActiveSection(section.id)">
 
-  <div class="container">
+  <div class="container" ng-hide="!affixed">
     <div class="navbar-collapse" collapse="tertiaryCollapse">
       <ul class="nav navbar-nav">
-        <li ng-hide="!affixed" class="nav-icon nav-title active hidden-xs">
+        <li class="nav-icon nav-title active hidden-xs">
           <a href="{{baseUrl + section.url}}" push-state="{{section.pushState}}">
             <span class="fa fa-{{section.icon}}"></span> {{ section.title | i18n }}
           </a>
+        </li>
+
+        <!-- Weblit dropdown -->
+        <li ng-if="section.id === 'resources'" class="dropdown dropdown-toc hidden-xs">
+          <a href="#" class="dropdown-toggle">{{ 'Web Literacies' | i18n }}<span class="caret"></span></a>
+          <ul class="explore-dropdown-menu dropdown-menu">
+            <li
+              ng-repeat="skill in literacies"
+              class="literacy"
+              ng-class="{ active : isActivePage(skill.tag) }">
+              <a href="{{baseUrl}}resources/literacy/{{ skill.tag }}" push-state="true" class="color-{{$index}}">{{ skill.term }}</a>
+            </li>
+          </ul>
         </li>
 
         <li ng-repeat="page in section.pages" ng-if="!page.isAtleastMentor || _user.isAdmin || _user.isSuperMentor || _user.isMentor">
