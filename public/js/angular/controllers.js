@@ -50,11 +50,10 @@ angular
           },
           {
             id: 'resources',
-            url: 'resources',
             title: 'Resources',
             icon: 'book',
             pushState: true,
-            pages: [{}]
+            dropdown: true
           },
           {
             id: 'events',
