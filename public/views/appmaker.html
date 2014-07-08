@@ -1,0 +1,57 @@
+<div id="appmaker">
+  <section>
+    <!-- carousel
+      http://angular-ui.github.io/bootstrap/#/carousel
+      look in public/views/home.html
+
+      Your controller is called angularController in public/js/angular/controllers.js
+    -->
+  </section>
+  <section class="text-center">
+  <div class="container">
+    <h1>Make an app for your students</h1>
+    <p>Blah blah</p>
+    <p>
+      <a href="#" class="btn btn-success btn-lg">Pick a template</a>
+      <a href="#" class="btn btn-info btn-lg">Start from scratch</a>
+    </p>
+  </div>
+  </section>
+  <section>
+    <div class="container">
+      <p class="lead">Don't know where to start? Pick...</p>
+      <div class="row">
+        <div class="col-sm-4" ng-repeat="make in makes">
+          <div class="thumbnail-wrapper" style="background-image:url({{make.image}})"></div>
+          <div class="caption">
+            <h3>{{make.title}}</h3>
+            <p class="text-muted">Created by @dasd</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic expedita labore voluptatem, quam ullam necessitatibus saepe tempore eum? Id dolorum minus cumque ducimus dolores, unde necessitatibus ut aut? A, quo.</p>
+            <p>
+              <a href="#" class="btn btn-primary" role="button">
+                <span class="fa fa-code-fork"></span> Remix
+              </a>
+              <a href="#" class="btn btn-danger" role="button">
+                <span class="fa fa-heart"></span><span class="sr-only">Like</span>
+              </a>
+            </p>
+          </div>
+        </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 text-center">
+          Teach
+        </div>
+        <div class="col-sm-4 text-center">
+          Contribute
+        </div>
+        <div class="col-sm-4 text-center">
+          Imagine
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -377,4 +377,22 @@ angular
         })
         .error(onError);
     }
+  ])
+  .controller('appmakerController', ['$scope',
+    function ($scope) {
+      $scope.makes = [
+        {
+          title: 'My make',
+          image: 'https://stuff.webmaker.org/badges/json-wrangler.png'
+        },
+        {
+          title: 'My make',
+          image: 'https://stuff.webmaker.org/badges/json-wrangler.png'
+        },
+        {
+          title: 'My make',
+          image: 'https://stuff.webmaker.org/badges/json-wrangler.png'
+        }
+      ];
+    }
   ]);

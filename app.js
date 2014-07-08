@@ -348,6 +348,7 @@ if (env.get('FLAGS_EXPLORE')) {
   }));
 }
 app.get("/tools", routes.angular);
+app.get("/appmaker", routes.angular);
 
 // Made With Code
 app.get('/madewithcode-*', routes.angular);
