@@ -73,6 +73,9 @@ angular.module('webmakerApp', ['ngRoute', 'ui.bootstrap', 'webmakerApp.services'
 
       // Set base url
       $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
+        // Reset the page title when route changes
+        $rootScope.title = 'Explore';
+
         $rootScope.baseUrl = '/';
         if ($routeParams.locale) {
           $rootScope.baseUrl += ($routeParams.locale + '/');

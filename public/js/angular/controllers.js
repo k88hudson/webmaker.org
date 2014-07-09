@@ -378,19 +378,23 @@ angular
         .error(onError);
     }
   ])
-  .controller('appmakerController', ['$scope',
-    function ($scope) {
+  .controller('appmakerController', ['$scope', '$rootScope',
+    function ($scope, $rootScope) {
+
+      // Change the page title for Appmaker.
+      $rootScope.title = 'Discover Appmaker';
+
       $scope.makes = [
         {
-          title: 'My make',
+          title: 'Music App',
           image: 'https://stuff.webmaker.org/badges/json-wrangler.png'
         },
         {
-          title: 'My make',
+          title: 'Chat App',
           image: 'https://stuff.webmaker.org/badges/json-wrangler.png'
         },
         {
-          title: 'My make',
+          title: 'Playlist App',
           image: 'https://stuff.webmaker.org/badges/json-wrangler.png'
         }
       ];
