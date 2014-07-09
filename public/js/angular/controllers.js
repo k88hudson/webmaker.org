@@ -428,15 +428,18 @@ angular
       $scope.makes = [
         {
           title: 'Music App',
-          image: 'https://stuff.webmaker.org/badges/json-wrangler.png',
+          image: '/img/appmaker/music-app.png',
+          url: '//petite-carriage-8.appalot.me/app'
         },
         {
           title: 'Chat App',
-          image: 'https://stuff.webmaker.org/badges/json-wrangler.png'
+          image: '/img/appmaker/chat-app.png',
+          url: '//loose-mass-816.appalot.me/app'
         },
         {
-          title: 'Playlist App',
-          image: 'https://stuff.webmaker.org/badges/json-wrangler.png'
+          title: 'Fireworks App',
+          image: '/img/appmaker/fireworks-app.png',
+          url: '//combative-lake-777.appalot.me/app'
         }
       ];
     }
