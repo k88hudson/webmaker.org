@@ -11,12 +11,12 @@
       <h1>{{'Make an app for your' | i18n}} <span id="app-audience" data-show="{{!!showAudienceTitle}}">{{audiences[currentSlideIndex].title | i18n}}</span>.</h1>
       <p id="sub-heading">{{'Appmaker Sub Heading' | i18n}}</p>
       <p>
-        <a href="#" class="btn btn-success btn-lg">{{'Pick a template' | i18n}}</a>
-        <a href="#" class="btn btn-info btn-lg">{{'Start from scratch' | i18n}}</a>
+        <a href="#starter-apps" class="btn btn-success btn-lg">{{'Pick a template' | i18n}}</a>
+        <a href="//apps.webmaker.org/designer" class="btn btn-info btn-lg">{{'Start from scratch' | i18n}}</a>
       </p>
     </div>
   </section>
-  <section id="starter-apps">
+  <section name="starter-apps" id="starter-apps">
     <div class="container">
       <p class="lead">{{'Don\'t know where to start?' | i18n}}</p>
       <div class="row">
@@ -27,11 +27,14 @@
             <p class="text-muted">Created by @dasd</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic expedita labore voluptatem, quam ullam necessitatibus saepe tempore eum? Id dolorum minus cumque ducimus dolores, unde necessitatibus ut aut? A, quo.</p>
             <p>
-              <a href="#" class="btn btn-primary" role="button">
+              <a href="{{make.remixUrl}}" class="btn btn-primary" role="button">
                 <span class="fa fa-code-fork"></span> Remix
               </a>
-              <a href="#" class="btn btn-danger" role="button">
-                <span class="fa fa-heart"></span><span class="sr-only">Like</span>
+              <a href="{{make.playUrl}}" class="btn btn-info" role="button">
+                <span class="fa fa-mobile"></span> Play
+              </a>
+              <a href="{{make.installUrl}}" class="btn btn-warning" role="button">
+                <span class="fa fa-gears"></span> Install
               </a>
             </p>
           </div>
