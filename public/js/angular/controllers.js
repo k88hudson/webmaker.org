@@ -384,10 +384,51 @@ angular
       // Change the page title for Appmaker.
       $rootScope.title = 'Discover Appmaker';
 
+      $scope.showAudienceTitle = true;
+      $scope.currentSlideIndex = 0;
+
+      // Because the carousel scope is a mystery, just poll the DOM relatively
+      // infrequently to see when we need to do our own transitioning.
+      var transitioning = false;
+      setInterval(function () {
+        var slides = document.querySelectorAll('.carousel .slide');
+        if (slides.length > 0) {
+          var currentSlide = document.querySelector('.carousel .slide.active');
+          var nextSlide = document.querySelector('.carousel .slide.left') || document.querySelector('.carousel .slide.right');
+
+          if (nextSlide && !transitioning) {
+            transitioning = true;
+            $scope.showAudienceTitle = false;
+            $scope.$digest();
+          }
+          else if (!nextSlide && transitioning) {
+            transitioning = false;
+            $scope.showAudienceTitle = true;
+            $scope.currentSlideIndex = Array.prototype.indexOf.call(slides, currentSlide);
+            $scope.$digest();
+          }
+        }
+      }, 250);
+
+      $scope.audiences = [
+        {
+          title: 'students',
+          image: '/img/appmaker/students-header.png'
+        },
+        {
+          title: 'business',
+          image: '/img/appmaker/business-header.png'
+        },
+        {
+          title: 'friends',
+          image: '/img/appmaker/friends-header.png'
+        }
+      ];
+
       $scope.makes = [
         {
           title: 'Music App',
-          image: 'https://stuff.webmaker.org/badges/json-wrangler.png'
+          image: 'https://stuff.webmaker.org/badges/json-wrangler.png',
         },
         {
           title: 'Chat App',

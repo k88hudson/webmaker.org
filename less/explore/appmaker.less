@@ -26,7 +26,21 @@
   #app-audience {
     padding: 0 20px;
     font-weight: bold;
-    border-bottom: 2px solid;
+    border-bottom: 2px solid #000;
+    display: inline-block;
+
+    min-width: 7em;
+
+    -webkit-transition: color .5s;
+    transition: color .5s;
+
+    &[data-show="true"] {
+      color: black;
+    }
+
+    &[data-show="false"] {
+      color: transparent;
+    }
   }
 
   #sub-heading {

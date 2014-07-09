@@ -1,24 +1,14 @@
 <div id="appmaker">
   <section id="appmaker-carousel">
-    <carousel interval="-1">
-      <slide class="slide" id="slide-1">
+    <carousel interval="5000">
+      <slide class="slide" ng-repeat="audience in audiences">
         <div class="container text-center">
-          <img class="maker-party-logo" src="/img/appmaker/friends-header.png" alt="{{'friends' | i18n}}">
-        </div>
-      </slide>
-      <slide class="slide" id="slide-2">
-        <div class="container text-center">
-          <img class="maker-party-logo" src="/img/appmaker/business-header.png" alt="{{'business' | i18n}}">
-        </div>
-      </slide>
-      <slide class="slide" id="slide-3">
-        <div class="container text-center">
-          <img class="maker-party-logo" src="/img/appmaker/students-header.png" alt="{{'students' | i18n}}">
+          <img src="{{audience.image}}" alt="{{audience.title | i18n}}">
         </div>
       </slide>
     </carousel>
     <div class="container text-center">
-      <h1>{{'Make an app for your' | i18n}} <span id="app-audience">{{'students' | i18n}}</span>.</h1>
+      <h1>{{'Make an app for your' | i18n}} <span id="app-audience" data-show="{{!!showAudienceTitle}}">{{audiences[currentSlideIndex].title | i18n}}</span>.</h1>
       <p id="sub-heading">{{'Appmaker Sub Heading' | i18n}}</p>
       <p>
         <a href="#" class="btn btn-success btn-lg">{{'Pick a template' | i18n}}</a>
