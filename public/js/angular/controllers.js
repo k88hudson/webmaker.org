@@ -413,15 +413,15 @@ angular
       $scope.audiences = [
         {
           title: 'students',
-          image: '/img/appmaker/students-header.png'
+          image: '/img/appmaker/appmaker-hero-blue.svg'
         },
         {
           title: 'business',
-          image: '/img/appmaker/business-header.png'
+          image: '/img/appmaker/appmaker-hero-red.svg'
         },
         {
           title: 'friends',
-          image: '/img/appmaker/friends-header.png'
+          image: '/img/appmaker/appmaker-hero-yellow.svg'
         }
       ];
 
