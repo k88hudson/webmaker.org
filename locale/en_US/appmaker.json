@@ -1,0 +1,102 @@
+{
+  "Appmaker": {
+    "message": "Appmaker",
+    "description": ""
+  },
+  "Appmaker Sub Heading": {
+    "message": "Appmaker is a free tool to create personal mobile apps, even if you don't know code. Combine individual bricks to create and share custom mobile apps right in your web browser.",
+    "description": ""
+  },
+  "Mobile apps made easy": {
+    "message": "Mobile apps made easy",
+    "description": "Tools page"
+  },
+  "Appmaker Tools Page Description": {
+    "message": "Appmaker is a free tool to create personal mobile apps, even if you don't know code. Combine individual bricks to create and share custom mobile apps right in your web browser.",
+    "description": "Tools page"
+  },
+  "Appmaker Desc": {
+    "message": "Make apps for your phone.",
+    "description": ""
+  },
+  "Discover Appmaker": {
+    "message": "Discover Appmaker",
+    "description": "Title for Appmaker page"
+  },
+  "Don't know where to start?": {
+    "message": "Don't know where to start?",
+    "description": ""
+  },
+  "Pick one of these...": {
+    "message": "Looking for an easy way to get started? Remix one of these templates to make your very own app.",
+    "description": ""
+  },
+  "Contribute": {
+    "message": "Don't know where to start?",
+    "description": ""
+  },
+  "Teach": {
+    "message": "Don't know where to start?",
+    "description": ""
+  },
+  "Imagine": {
+    "message": "Don't know where to start?",
+    "description": ""
+  },
+  "Make an app for your": {
+    "message": "Make an app for your",
+    "description": ""
+  },
+  "Pick a template": {
+    "message": "Pick a template",
+    "description": ""
+  },
+  "Music App": {
+    "message": "Music App",
+    "description": ""
+  },
+  "Fireworks App": {
+    "message": "Fireworks App",
+    "description": ""
+  },
+  "Chat App": {
+    "message": "Chat App",
+    "description": ""
+  },
+  "Music App Description": {
+    "message": "Use instruments and a sequencer to build an app that makes noise.",
+    "description": ""
+  },
+  "Fireworks App Description": {
+    "message": "Celebrate a goal or just make some noise by shooting fireworks!",
+    "description": ""
+  },
+  "Chat App Description": {
+    "message": "Share doodles with friends using this creative drawing app.",
+    "description": ""
+  },
+  "students": {
+    "message": "students",
+    "description": ""
+  },
+  "business": {
+    "message": "business",
+    "description": ""
+  },
+  "friends": {
+    "message": "friends",
+    "description": ""
+  },
+  "an app to chat with your friends": {
+    "message": "an app to chat with your friends",
+    "description": ""
+  },
+  "a music-making app": {
+    "message": "a music-making app",
+    "description": ""
+  },
+  "a personal goal tracker": {
+    "message": "a personal goal tracker",
+    "description": ""
+  }
+}
