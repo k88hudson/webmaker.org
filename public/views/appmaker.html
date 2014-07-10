@@ -26,21 +26,23 @@
       <p class="lead text-center">{{'Don\'t know where to start?' | i18n}}</p>
       <div class="row">
         <div class="col-sm-4" ng-repeat="make in makes">
-          <div class="thumbnail-wrapper" style="background-image:url({{make.image}})"></div>
-          <div class="caption">
-            <h3>{{make.title | i18n}}</h3>
-            <p>{{(make.title + ' Description') | i18n}}</p>
-            <p>
-              <a href="{{make.remixUrl}}" class="btn btn-primary" role="button">
-                <span class="fa fa-code-fork"></span> Remix
-              </a>
-              <a href="{{make.playUrl}}" class="btn btn-info" role="button">
-                <span class="fa fa-mobile"></span> Play
-              </a>
-              <a href="{{make.installUrl}}" class="btn btn-warning" role="button">
-                <span class="fa fa-gears"></span> Install
-              </a>
-            </p>
+          <div class="make">
+            <div class="thumbnail-wrapper" style="background-image:url({{make.image}})"></div>
+            <div class="caption">
+              <h3>{{make.title | i18n}}</h3>
+              <p>{{(make.title + ' Description') | i18n}}</p>
+              <p>
+                <a href="{{make.remixUrl}}" class="btn btn-primary" role="button">
+                  <span class="fa fa-code-fork"></span> Remix
+                </a>
+                <a href="{{make.playUrl}}" class="btn btn-info" role="button">
+                  <span class="fa fa-mobile"></span> Play
+                </a>
+                <a href="{{make.installUrl}}" class="btn btn-warning" role="button">
+                  <span class="fa fa-gears"></span> Install
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>

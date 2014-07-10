@@ -27,16 +27,26 @@
     position: relative;
     background-color: rgb(227, 236, 241);
     padding-bottom: 100px;
-
-    .thumbnail-wrapper {
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: 50%;
-      height: 480px;
+    .make {
+      margin-bottom: 20px;
+      @media (min-width: @screen-md-min) {
+        margin: 20px;
+      }
+      background: white;
     }
-
-    .thumbnail-wrapper, .caption {
-      width: 320px;
+    .thumbnail-wrapper {
+      @media (min-width: @screen-sm-min) {
+        padding-bottom: 150%;
+      }
+    }
+    .caption {
+      padding: 20px;
+      h3 {
+        margin-top: 0;
+      }
+      .btn {
+        margin-bottom: 3px;
+      }
     }
   }
 
