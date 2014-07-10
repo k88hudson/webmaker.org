@@ -24,23 +24,19 @@
     "description": "Title for Appmaker page"
   },
   "Don't know where to start?": {
-    "message": "Don't know where to start?",
-    "description": ""
-  },
-  "Pick one of these...": {
     "message": "Looking for an easy way to get started? Remix one of these templates to make your very own app.",
     "description": ""
   },
   "Teach": {
-    "message": "Don't know where to start?",
+    "message": "Teach",
     "description": ""
   },
   "Contribute": {
-    "message": "Don't know where to start?",
+    "message": "Contribute",
     "description": ""
   },
   "Imagine": {
-    "message": "Don't know where to start?",
+    "message": "Imagine",
     "description": ""
   },
   "Teach Description": {
