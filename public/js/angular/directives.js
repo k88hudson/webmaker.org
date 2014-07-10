@@ -82,6 +82,7 @@ angular
       return {
         restrict: 'A',
         templateUrl: '/views/partials/gallery-item.html',
+        scope: {},
         link: function (scope, el, attrs) {
           makeapi.makeapi
             .id(attrs.makeId)
