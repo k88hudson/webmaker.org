@@ -348,8 +348,7 @@ if (env.get('FLAGS_EXPLORE')) {
   }));
 }
 app.get("/tools", routes.angular);
-
-// Made With Code
+app.get("/make-your-own", routes.angular);
 app.get('/madewithcode-*', routes.angular);
 
 app.get("/gallery", routes.gallery({
@@ -390,7 +389,6 @@ app.delete("/api/badges/:badge/instance/email/:email", badgesRoutes.middleware.h
 
 app.post("/api/submit-resource", routes.api.submitResource);
 
-app.get("/make-your-own", routes.page("make-your-own"));
 app.get("/mentor", routes.page("mentor"));
 app.get("/getinvolved", routes.page("getinvolved"));
 app.get("/search", routes.search);

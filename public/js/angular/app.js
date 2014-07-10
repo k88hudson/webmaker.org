@@ -35,6 +35,10 @@ angular.module('webmakerApp', ['ngRoute', 'ui.bootstrap', 'webmakerApp.services'
           templateUrl: '/views/admin/badges-badge.html',
           controller: 'badgesAdminBadgeController'
         })
+        .when('/:locale?/make-your-own', {
+          templateUrl: '/views/make-your-own.html',
+          controller: 'makeYourOwnController'
+        })
         .when('/:locale?', {
           templateUrl: '/views/home.html',
           controller: 'homeController'

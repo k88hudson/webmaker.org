@@ -205,6 +205,13 @@ angular
       wmNav.section('tools');
     }
   ])
+  .controller('makeYourOwnController', ['$scope', 'wmNav',
+    function ($scope, wmNav) {
+      wmNav.page('make-your-own');
+      wmNav.section('resources');
+// When we update title, this should be {{ "TeachTemplates" | i18n }}
+    }
+  ])
   .controller('mwcController', ['$rootScope', '$scope', '$routeParams', '$timeout', 'wmNav',
     function ($rootScope, $scope, $routeParams, $timeout, wmNav) {
       wmNav.section('resources');

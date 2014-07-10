@@ -1,0 +1,73 @@
+<div class="make-your-own" ng-controller="makeYourOwnController">
+<div id="midbar">
+  <div class="gallery-header">
+    <div class="ui-wrapper">
+      <div class="header">
+        <h1 bind-unsafe-html="'teachtemplateHeader' | i18n"></h1>
+
+        <p bind-unsafe-html="'teachtemplateDesc' | i18n"></p>
+      </div>
+      <div class="helpbox">
+        <img src="/img/img-teach-template-help.jpg">
+
+        <p bind-unsafe-html="'teachtemplateHelpCopy' | i18n"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main id="content" class="content clearfix ">
+  <div class="ui-wrapper ui-body-nobg">
+
+    <div class="ui-bg-column column-teachtemplate">
+      <div dir="{{localeInfo.direction}}" class="banner teachkit">
+        {{ 'teachingkit' | i18n }}
+      </div>
+      <h2>
+        {{ 'teachingkit' | i18n }}
+      </h2>
+
+      <h3>
+        {{ 'teachtemplateKitDesc' | i18n }}
+      </h3>
+
+      <a href="https://thimble.webmaker.org/project/10274/remix" class="ui-blue-btn kit-nudgeup">
+        {{ 'Get started' | i18n }} <span class="icon-angle-right"></span></a>
+      <img src="/img/img-teach-template-kit-preview.png" alt="{{ 'teachingkit' | i18n }}">
+    </div>
+    <div class="ui-bg-column column-teachtemplate activity-column">
+      <div class="note-paper-side"></div>
+      <div class="note-paper"></div>
+      <div dir="{{localeInfo.direction}}" class="banner teachactivity">
+        {{ 'activity' | i18n }}
+      </div>
+      <h2>
+        {{ 'activity' | i18n }}
+      </h2>
+
+      <h3>
+        {{ 'teachtemplateActivityDesc' | i18n }}
+      </h3>
+      <a href="https://thimble.webmaker.org/project/10286/remix" class="ui-blue-btn">{{ 'Get started' | i18n }}
+        <span class="icon-angle-right"></span></a>
+
+      <div class="column-img">
+        <img src="/img/img-teach-template-activity-preview.png" alt="{{ 'activity' | i18n }}">
+      </div>
+    </div>
+  </div>
+</main>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-0"
+           sample-make make-id="5387a4bfdd8624d371000215"></div>
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-0"
+           sample-make make-id="53a0acff7a091a167200001e"></div>
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-0"
+           sample-make make-id="5362830d2e257e986700014f"></div>
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-0"
+           sample-make make-id="53985fc6edcf14936e0000a0"></div>
+      <div sample-make make-id="53985fc6edcf14936e0000a0"></div>
+    </div>
+  </div>
+</div>
