@@ -428,21 +428,21 @@ angular
         {
           title: 'Music App',
           image: '/img/appmaker/music-app.jpg',
-          remixUrl: '//apps.webmaker.org/designer?remix=http://petite-carriage-8.appalot.me/app',
+          remixUrl: '//apps.webmaker.org/' + $scope.lang + '/designer?remix=http://petite-carriage-8.appalot.me/app',
           installUrl: '//petite-carriage-8.appalot.me/install',
           appUrl: '//petite-carriage-8.appalot.me/app'
         },
         {
           title: 'Chat App',
           image: '/img/appmaker/chat-app.jpg',
-          remixUrl: '//apps.webmaker.org/designer?remix=http://loose-mass-816.appalot.me/app',
+          remixUrl: '//apps.webmaker.org/' + $scope.lang + '/designer?remix=http://loose-mass-816.appalot.me/app',
           installUrl: '//loose-mass-816.appalot.me/install',
           appUrl: '//loose-mass-816.appalot.me/app'
         },
         {
           title: 'Fireworks App',
           image: '/img/appmaker/fireworks-app.jpg',
-          remixUrl: '//apps.webmaker.org/designer?remix=http://combative-lake-777.appalot.me/app',
+          remixUrl: '//apps.webmaker.org/' + $scope.lang + '/designer?remix=http://combative-lake-777.appalot.me/app',
           installUrl: '//combative-lake-777.appalot.me/install',
           appUrl: '//combative-lake-777.appalot.me/app'
         }

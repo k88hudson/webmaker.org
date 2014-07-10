@@ -4,7 +4,7 @@
     "description": ""
   },
   "Appmaker Sub Heading": {
-    "message": "Appmaker is a free tool to create personal mobile apps, even if you don't know code. Combine individual bricks to create and share custom mobile apps right in your web browser.",
+    "message": "Appmaker is a free tool for creating personal mobile apps, even if you don't know code! Combine individual bricks to create and share custom mobile apps right in your web browser.",
     "description": ""
   },
   "Mobile apps made easy": {
@@ -12,7 +12,7 @@
     "description": "Tools page"
   },
   "Appmaker Tools Page Description": {
-    "message": "Appmaker is a free tool to create personal mobile apps, even if you don't know code. Combine individual bricks to create and share custom mobile apps right in your web browser.",
+    "message": "Appmaker is a free tool for creating personal mobile apps, even if you don't know code! Combine individual bricks to create and share custom mobile apps right in your web browser.",
     "description": "Tools page"
   },
   "Appmaker Desc": {
@@ -31,16 +31,28 @@
     "message": "Looking for an easy way to get started? Remix one of these templates to make your very own app.",
     "description": ""
   },
-  "Contribute": {
+  "Teach": {
     "message": "Don't know where to start?",
     "description": ""
   },
-  "Teach": {
+  "Contribute": {
     "message": "Don't know where to start?",
     "description": ""
   },
   "Imagine": {
     "message": "Don't know where to start?",
+    "description": ""
+  },
+  "Teach Description": {
+    "message": "Want to show others how to make mobile apps? Want to get people thinking about mobile design? Check out our teaching material!",
+    "description": ""
+  },
+  "Contribute Description": {
+    "message": "Help us turn Appmaker into something truly amazing by contributing your time and expertise to the project.",
+    "description": ""
+  },
+  "Imagine Description": {
+    "message": "Join us in empowering a generation of new smartphone users to create and distribute locally relevant mobile content.",
     "description": ""
   },
   "Make an app for your": {
@@ -95,8 +107,20 @@
     "message": "a music-making app",
     "description": ""
   },
-  "a personal goal tracker": {
-    "message": "a personal goal tracker",
+  "See how": {
+    "message": "See how",
+    "description": ""
+  },
+  "See more": {
+    "message": "See more",
+    "description": ""
+  },
+  "Get started": {
+    "message": "Get started",
+    "description": ""
+  },
+  "Learn more": {
+    "message": "Learn more",
     "description": ""
   }
 }
