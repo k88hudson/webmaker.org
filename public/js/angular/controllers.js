@@ -400,8 +400,7 @@ angular
             transitioning = true;
             $scope.showAudienceTitle = false;
             $scope.$digest();
-          }
-          else if (!nextSlide && transitioning) {
+          } else if (!nextSlide && transitioning) {
             transitioning = false;
             $scope.showAudienceTitle = true;
             $scope.currentSlideIndex = Array.prototype.indexOf.call(slides, currentSlide);
