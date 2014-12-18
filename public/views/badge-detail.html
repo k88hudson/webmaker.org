@@ -33,28 +33,28 @@
 
   <section id="requirements">
 
-    <div class="container application-on">
+    <div ng-show="showApplicationForm" class="container">
       <div ng-show="_user">
 
-        <div id="submit-badge-success" class="panel panel-info panel-badges hidden">
+        <div id="submit-badge-success" class="panel panel-info panel-badges">
           <div class="panel-body">
             <h2>{{ "GotApplication" | i18n }}</h2>
             <p ng-bind-html="'ReplyToEmail'"></p>
           </div>
         </div>
 
-        <div id="claim-badge-success" class="panel panel-info panel-badges hidden">
+        <div id="claim-badge-success" class="panel panel-info panel-badges">
           <div class="panel-body">
             <h2>{{ "ClaimSuccess" | i18n }}</h2>
             <p ng-bind-html="'ClaimSuccessDetails'"></p>
           </div>
         </div>
 
-        <div id="application" class="panel panel-navy panel-badges" data-badge-slug="{{ badge.slug }}" data-application-slug="{{ application && application.slug}}">
+        <div ng-show="showApplicationForm" id="application" class="panel panel-navy panel-badges" data-badge-slug="{{ badge.slug }}" data-application-slug="{{ application && application.slug}}">
           <div class="panel-body">
-            <button id="" class="js-close-panel close-panel btn"><span class="fa fa-times"></span></button>
+            <button ng-click="applicationOff()" class="js-close-panel close-panel btn"><span class="fa fa-times"></span></button>
             <h2>{{ "Apply for this badge" | i18n }}</h2>
-            <div class="submit-badge-error alert alert-danger hidden">
+            <div class="submit-badge-error alert alert-danger">
               <p>{{ "BadgesError" | i18n }} <span class="error-message"></span></p>
             </div>
             <form id="submit-badge-application">
@@ -88,21 +88,21 @@
       </div>
     </div>
 
-    <div class="container js-issue-badge-on hidden">
+    <div ng-show="showIssueForm" class="container">
       <div ng-if="_user">
 
-        <div id="issue-badge-success" class="panel panel-info panel-badges hidden">
+        <div id="issue-badge-success" class="panel panel-info panel-badges">
           <div class="panel-body">
             <h2>{{ "Thanks" | i18n }}</h2>
-            <p>{{"Your badge was issued successfully." | i18n }}</p>
+            <p>Your badge was issued successfully.</p>
           </div>
         </div>
 
         <div id="issue" class="panel panel-navy panel-badges" data-badge-slug="{{ badge.slug }}">
           <div class="panel-body">
-            <button id="" class="js-close-panel close-panel btn"><span class="fa fa-times"></span></button>
+            <button ng-click="applicationOff()" class="close-panel btn"><span class="fa fa-times"></span></button>
             <h2>Issue this badge</h2>
-            <div class="submit-badge-error alert alert-danger hidden">
+            <div class="submit-badge-error alert alert-danger">
               <p>{{ "BadgesError" | i18n}} <span class="error-message"></span></p>
             </div>
             <form id="issue-form">
@@ -125,14 +125,14 @@
 
     <div class="container">
       <h2>{{ "Badge Requirements" | i18n }}
-        <span class="application-off">
-            <button ng-if="!assertionUrl" id="apply-now" class="btn btn-lg btn-success pull-right login-only hidden">
+        <span ng-hide="showApplicationForm">
+            <button ng-if="_user && !assertionUrl" ng-click="showApplicationForm = true" class="btn btn-lg btn-success pull-right">
               {{ (application ? "Edit Application": "Apply") | i18n }}
             </button>
      
-            <button ng-if="canIssue" id="js-badge-issuing" class="btn btn-lg btn-success pull-right">Issue this badge</button>
+            <button ng-if="canIssue" ng-click="issueOn()" id="js-badge-issuing" class="btn btn-lg btn-success pull-right">Issue this badge</button>
 
-            <button class="btn btn-lg btn-success pull-right logout-only hidden webmaker-login">{{ "Login to apply" | i18n }}</button>
+            <button ng-hide="_user" class="btn btn-lg btn-success pull-right webmaker-login">{{ "Login to apply" | i18n }}</button>
         </span>
       </h2>
       <ol class="list-badges-requirements list-unstyled">

@@ -392,8 +392,8 @@ angular
         .error(onError);
     }
   ])
-  .controller('badgesDetailController', ['$scope', '$http', '$window', '$routeParams', '$modal', 'wmNav',
-    function ($scope, $http, $window, $routeParams, $modal, wmNav) {
+  .controller('badgesDetailController', ['$scope', '$http', '$window', '$routeParams', 'wmNav',
+    function ($scope, $http, $window, $routeParams, wmNav) {
       wmNav.page('badge-' + $routeParams.badge);
       wmNav.section('explore');
 
@@ -408,6 +408,25 @@ angular
         .error(function (err) {
           console.log(err);
         });
+
+      $scope.applicationSubmitted = false;
+      $scope.claimSuccessful = false;
+      $scope.badgeIssued = false;
+      $scope.error = false;
+
+      $scope.showIssueForm = false;
+      $scope.showApplicationForm = false;
+
+      $scope.applicationOff = function () {
+        $scope.showIssueForm = false;
+        $scope.showApplicationForm = false;
+      };
+
+      $scope.issueOn = function () {
+        $scope.showIssueForm = false;
+        $scope.showApplicationForm = true;
+      }
+
     }
   ])
   .controller('appmakerController', ['$scope', '$rootScope', '$timeout',
