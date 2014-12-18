@@ -168,9 +168,8 @@ module.exports = function (env) {
         [getBadge, getInstance, getApplication],
         function (err, results) {
           if (err) {
-            return res.render('badge-not-found.html', {
-              page: 'search',
-              view: 'badges'
+            return res.send(404, {
+              error: 'Badge not found'
             });
           }
 

@@ -431,6 +431,7 @@ angular
       //todo
       .error(function (err) {
         console.log(err);
+        $scope.noBadge = true;
       });
 
       $scope.applicationSuccessful = false;
