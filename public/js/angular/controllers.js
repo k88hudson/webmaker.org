@@ -468,7 +468,6 @@ angular
       }
 
       $scope.submitApplication = function (application) {
-        console.log(application);
         if (application.claimcode) {
           $http.post('/api/badges/' + $routeParams.badge + '/claim', {
             claimcode: application.claimcode
@@ -507,7 +506,6 @@ angular
       };
 
       $scope.submitIssue = function (issue) {
-        console.log(issue);
         $http.post('/api/badges/' + $routeParams.badge + '/issue', $scope.newIssue)
           .success(function (data) {
             $scope.issueSuccessful = true;
