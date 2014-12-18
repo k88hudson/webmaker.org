@@ -135,9 +135,9 @@
               {{ (application ? "Edit Application": "Apply") | i18n }}
             </button>
      
-            <button ng-if="canIssue" ng-click="issueOn()" id="js-badge-issuing" class="btn btn-lg btn-success pull-right">Issue this badge</button>
+            <button ng-if="_user.username && canIssue" ng-click="issueOn()" id="js-badge-issuing" class="btn btn-lg btn-success pull-right">Issue this badge</button>
 
-            <button ng-if="!_user.username" class="btn btn-lg btn-success pull-right webmaker-login">{{ "Login to apply" | i18n }}</button>
+            <button wm-signin ng-if="!_user.username" class="btn btn-lg btn-success pull-right webmaker-login">{{ "Login to apply" | i18n }}</button>
         </span>
       </h2>
       <ol class="list-badges-requirements list-unstyled">

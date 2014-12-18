@@ -417,19 +417,21 @@ angular
           });
 
           // Set up application
-          if (!data.application || !data.application.evidence) return;
+          if (!data.application || !data.application.evidence) {
+            return;
+          }
           if (data.application.evidence.length) {
-            $scope.newApplication.evidence = data.application.evidence[0].reflection
+            $scope.newApplication.evidence = data.application.evidence[0].reflection;
           }
           if (data.application.evidence.length >= 2) {
             $scope.newApplication.city = data.application.evidence[1].reflection.replace('Hive City: ', '');
           }
 
         })
-        //todo
-        .error(function (err) {
-          console.log(err);
-        });
+      //todo
+      .error(function (err) {
+        console.log(err);
+      });
 
       $scope.applicationSuccessful = false;
       $scope.claimSuccessful = false;
@@ -440,7 +442,7 @@ angular
       $scope.showApplicationForm = false;
 
       $scope.applicationOn = function () {
-        $scope.showApplicationForm = true
+        $scope.showApplicationForm = true;
       };
 
       $scope.formsOff = function () {
@@ -454,7 +456,7 @@ angular
       $scope.issueOn = function () {
         $scope.showIssueForm = true;
         $scope.showApplicationForm = false;
-      }
+      };
 
       function handleError(err) {
         console.error(err);
@@ -470,12 +472,12 @@ angular
           $http.post('/api/badges/' + $routeParams.badge + '/claim', {
             claimcode: application.claimcode
           })
-          .success(function () {
-            $scope.claimSuccessful = true;
-            $scope.error = false;
-            scope.showApplicationForm = false;
-          })
-          .error(handleError);
+            .success(function () {
+              $scope.claimSuccessful = true;
+              $scope.error = false;
+              $scope.showApplicationForm = false;
+            })
+            .error(handleError);
         } else {
           if (!application.evidence) {
             $scope.error = 'You must include evidence with your application.';
@@ -489,12 +491,12 @@ angular
             city: application.city,
             applicationSlug: $scope.application && $scope.application.slug
           })
-          .success(function (data) {
-            $scope.error = false;
-            $scope.applicationSuccessful = true;
-            $scope.showApplicationForm = false;
-          })
-          .error(handleError);
+            .success(function (data) {
+              $scope.error = false;
+              $scope.applicationSuccessful = true;
+              $scope.showApplicationForm = false;
+            })
+            .error(handleError);
         }
       };
 
@@ -504,17 +506,17 @@ angular
       };
 
       $scope.submitIssue = function (issue) {
-          console.log(issue);
-          $http.post('/api/badges/' + $routeParams.badge + '/issue', $scope.newIssue)
-            .success(function (data) {
-              $scope.issueSuccessful = true;
-              $scope.error = false;
-              $scope.newIssue = {
-                email: '',
-                comment: ''
-              };
-            })
-            .error(handleError);
+        console.log(issue);
+        $http.post('/api/badges/' + $routeParams.badge + '/issue', $scope.newIssue)
+          .success(function (data) {
+            $scope.issueSuccessful = true;
+            $scope.error = false;
+            $scope.newIssue = {
+              email: '',
+              comment: ''
+            };
+          })
+          .error(handleError);
       };
 
     }
