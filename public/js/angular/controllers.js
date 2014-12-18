@@ -242,10 +242,10 @@ angular
     function ($rootScope, $scope, $http, wmNav) {
       wmNav.page('badges-admin');
       wmNav.section('explore');
-
       $scope.badges = [];
       $scope.reverse = false;
       $scope.predicate = 'created';
+
       $scope.hasPermissions = function (badge) {
         return window.badgesPermissionsModel({
           badge: badge,
@@ -397,35 +397,125 @@ angular
       wmNav.page('badge-' + $routeParams.badge);
       wmNav.section('explore');
 
+      // Form models
+      $scope.newApplication = {
+        evidence: '',
+        city: '',
+        claimcode: ''
+      };
+
       $http
         .get('/api/badges/' + $routeParams.badge + '/details')
         .success(function (data) {
+          if (!data || typeof data !== 'object') {
+            $scope.noBadge = true;
+            return;
+          }
+          $scope.noBadge = false;
           Object.keys(data).forEach(function (key) {
             $scope[key] = data[key];
           });
+
+          // Set up application
+          if (!data.application || !data.application.evidence) return;
+          if (data.application.evidence.length) {
+            $scope.newApplication.evidence = data.application.evidence[0].reflection
+          }
+          if (data.application.evidence.length >= 2) {
+            $scope.newApplication.city = data.application.evidence[1].reflection.replace('Hive City: ', '');
+          }
+
         })
         //todo
         .error(function (err) {
           console.log(err);
         });
 
-      $scope.applicationSubmitted = false;
+      $scope.applicationSuccessful = false;
       $scope.claimSuccessful = false;
-      $scope.badgeIssued = false;
+      $scope.issueSuccessful = false;
       $scope.error = false;
 
       $scope.showIssueForm = false;
       $scope.showApplicationForm = false;
 
-      $scope.applicationOff = function () {
+      $scope.applicationOn = function () {
+        $scope.showApplicationForm = true
+      };
+
+      $scope.formsOff = function () {
         $scope.showIssueForm = false;
         $scope.showApplicationForm = false;
+        $scope.applicationSuccessful = false;
+        $scope.claimSuccessful = false;
+        $scope.issueSuccessful = false;
       };
 
       $scope.issueOn = function () {
-        $scope.showIssueForm = false;
-        $scope.showApplicationForm = true;
+        $scope.showIssueForm = true;
+        $scope.showApplicationForm = false;
       }
+
+      function handleError(err) {
+        console.error(err);
+        $scope.error = err.error || 'Sorry about that!';
+        $scope.applicationSuccessful = false;
+        $scope.claimSuccessful = false;
+        $scope.issueSuccessful = false;
+      }
+
+      $scope.submitApplication = function (application) {
+        console.log(application);
+        if (application.claimcode) {
+          $http.post('/api/badges/' + $routeParams.badge + '/claim', {
+            claimcode: application.claimcode
+          })
+          .success(function () {
+            $scope.claimSuccessful = true;
+            $scope.error = false;
+            scope.showApplicationForm = false;
+          })
+          .error(handleError);
+        } else {
+          if (!application.evidence) {
+            $scope.error = 'You must include evidence with your application.';
+            return;
+          } else if ($scope.requestCity && !application.city) {
+            $scope.error = 'Please add the city you are affiliated with';
+            return;
+          }
+          $http.post('/api/badges/' + $routeParams.badge + '/apply', {
+            evidence: application.evidence,
+            city: application.city,
+            applicationSlug: $scope.application && $scope.application.slug
+          })
+          .success(function (data) {
+            $scope.error = false;
+            $scope.applicationSuccessful = true;
+            $scope.showApplicationForm = false;
+          })
+          .error(handleError);
+        }
+      };
+
+      $scope.newIssue = {
+        email: '',
+        comment: ''
+      };
+
+      $scope.submitIssue = function (issue) {
+          console.log(issue);
+          $http.post('/api/badges/' + $routeParams.badge + '/issue', $scope.newIssue)
+            .success(function (data) {
+              $scope.issueSuccessful = true;
+              $scope.error = false;
+              $scope.newIssue = {
+                email: '',
+                comment: ''
+              };
+            })
+            .error(handleError);
+      };
 
     }
   ])

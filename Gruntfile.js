@@ -116,10 +116,11 @@ module.exports = function (grunt) {
             'bower_components/webmaker-login-ux/dist/ngWebmakerLogin.js',
             'bower_components/webmaker-login-ux/dist/templates/ngWebmakerLogin.templates.js',
 
-            'bower_components/showdown/compressed/showdown.js',
-            'bower_components/angular-markdown-filter/markdown.js',
             'bower_components/imagesloaded/imagesloaded.pkgd.js',
-            'bower_components/masonry/dist/masonry.pkgd.js'
+            'bower_components/masonry/dist/masonry.pkgd.js',
+            
+            'bower_components/angular-markdown-filter/markdown.js',
+            'bower_components/showdown/compressed/showdown.js'
           ],
         },
       },

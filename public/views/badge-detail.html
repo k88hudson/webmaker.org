@@ -1,83 +1,88 @@
-<div class="container">
+<section ng-if="noBadge" id="badge-not-found" class="container">
+  <img class="empty-badge" src="/img/empty-badge.svg" alt="{{ 'NoBadgeHere' | i18n }}">
+  <div>
+    <h1>{{'BadgeNotFound' | i18n}}</h1>
+    <p class="lead">{{'BadgeNotFoundDesc' | i18n}}</p>
+  </div>
+</section>
+
+<div ng-if="badge">
   <section>
-    <div class="panel panel-badges">
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-sm-3">
-            <div id="badge" class="badge"><img src="{{ badge.imageUrl }}"></div>
-            <p class="badge-tags">
-              <span class="fa fa-tags"></span>
-              <a ng-repeat="tag in badge.tags" href="/{{localeInfo.lang}}/search?type=tag&q={{ tag.value }}" class="badge-tag">{{ tag.value }}</a>
-            </p>
-          </div>
-          <div class="col-sm-9">
-            <h1>{{ badge.name }}</h1>
-              <p ng-if="badge.issuer">
-                <img ng-if="badge.issuer.imageUrl" class="issuer-avatar" src="{{ badge.issuer.imageUrl }}"> {{ "BadgesIssuedBy" | i18n }} <a href="{{ badge.issuer.url }}">{{ badge.issuer.name }}</a></p>
-              <p ng-if="!badge.issuer">{{"BadgesIssuedBy" | i18n }} <a href="{{ badge.issuerUrl }}">{{ badge.issuerUrl }}</a></p>
-            <p ng-bind-html="badge.earnerDescription | markdown"></p>
-            <div ng-if="assertionUrl">
-              <h3>Congratulations <span class="username">{{ _user.username }}</span>, you've earned this badge!</h3>
-              <a href="/user/{{_user.username}}/badges" class="btn btn-lg btn-success pull-left">{{ "ViewOnProfile" | i18n }}</a>
-              <form class="backpack" method="post" action="{{backpackUrl}}" target="_blank">
-                <input type="hidden" name="assertions" ng-model="assertionUrl">
-                <input type="submit" class="btn btn-lg btn-success pull-left" value="{{ 'SendToBackpack' | i18n}}">
-              </form>
+    <div class="container">
+      <div class="panel panel-badges">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <div id="badge" class="badge"><img src="{{ badge.imageUrl }}"></div>
+              <p class="badge-tags">
+                <span class="fa fa-tags"></span>
+                <a ng-repeat="tag in badge.tags" href="/{{localeInfo.lang}}/search?type=tag&q={{ tag.value }}" class="badge-tag">{{ tag.value }}</a>
+              </p>
+            </div>
+            <div class="col-sm-9">
+              <h1>{{ badge.name }}</h1>
+                <p ng-if="badge.issuer">
+                  <img ng-if="badge.issuer.imageUrl" class="issuer-avatar" src="{{ badge.issuer.imageUrl }}"> {{ "BadgesIssuedBy" | i18n }} <a href="{{ badge.issuer.url }}">{{ badge.issuer.name }}</a></p>
+                <p ng-if="!badge.issuer">{{"BadgesIssuedBy" | i18n }} <a href="{{ badge.issuerUrl }}">{{ badge.issuerUrl }}</a></p>
+              <p ng-bind-html="badge.earnerDescription | markdown"></p>
+              <div ng-if="assertionUrl">
+                <h3>Congratulations <span class="username">{{ _user.username }}</span>, you've earned this badge!</h3>
+                <a href="/user/{{_user.username}}/badges" class="btn btn-lg btn-success pull-left">{{ "ViewOnProfile" | i18n }}</a>
+                <form class="backpack" method="post" action="https://backpack.openbadges.org/issuer/frameless" target="_blank">
+                  <input type="hidden" name="assertions" ng-model="assertionUrl">
+                  <input type="submit" class="btn btn-lg btn-success pull-left" value="{{ 'SendToBackpack' | i18n}}">
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </section>
 
   <section id="requirements">
 
+    <div ng-show="applicationSuccessful" id="submit-badge-success" class="panel panel-info panel-badges">
+      <div class="panel-body">
+        <h2>{{ "GotApplication" | i18n }}</h2>
+        <p bind-unsafe-html="'ReplyToEmail' | i18n"></p>
+      </div>
+    </div>
+
+    <div ng-show="claimSuccessful" id="claim-badge-success" class="panel panel-info panel-badges">
+      <div class="panel-body">
+        <h2>{{ "ClaimSuccess" | i18n }}</h2>
+        <p bind-unsafe-html="'ClaimSuccessDetails' | i18n"></p>
+      </div>
+    </div>
+
     <div ng-show="showApplicationForm" class="container">
-      <div ng-show="_user">
+      <div ng-show="_user.username">
 
-        <div id="submit-badge-success" class="panel panel-info panel-badges">
+        <div ng-show="showApplicationForm" id="application" class="panel panel-navy panel-badges">
           <div class="panel-body">
-            <h2>{{ "GotApplication" | i18n }}</h2>
-            <p ng-bind-html="'ReplyToEmail'"></p>
-          </div>
-        </div>
-
-        <div id="claim-badge-success" class="panel panel-info panel-badges">
-          <div class="panel-body">
-            <h2>{{ "ClaimSuccess" | i18n }}</h2>
-            <p ng-bind-html="'ClaimSuccessDetails'"></p>
-          </div>
-        </div>
-
-        <div ng-show="showApplicationForm" id="application" class="panel panel-navy panel-badges" data-badge-slug="{{ badge.slug }}" data-application-slug="{{ application && application.slug}}">
-          <div class="panel-body">
-            <button ng-click="applicationOff()" class="js-close-panel close-panel btn"><span class="fa fa-times"></span></button>
+            <button ng-click="formsOff()" class="js-close-panel close-panel btn"><span class="fa fa-times"></span></button>
             <h2>{{ "Apply for this badge" | i18n }}</h2>
-            <div class="submit-badge-error alert alert-danger">
-              <p>{{ "BadgesError" | i18n }} <span class="error-message"></span></p>
+            <div ng-show="error" class="submit-badge-error alert alert-danger">
+              <p>{{ "BadgesError" | i18n }} {{error}}</p>
             </div>
-            <form id="submit-badge-application">
+            <form id="submit-badge-application" ng-Submit="submitApplication(newApplication)">
               <div class="form-group">
                 <label for="evidence">{{ "BadgesEvidenceLabel" | i18n }}</label>
                 <textarea class="form-control"
-                  name="evidence" placeholder="{{ 'BadgesIncludeLinks' | i18n }}" required
-                  ng-model="application.evidence[0].reflection">
+                  name="evidence" placeholder="{{ 'BadgesIncludeLinks' | i18n }}"
+                  ng-model="newApplication.evidence">
                 </textarea>
               </div>
               <div ng-if="requestCity" class="form-group">
-                <label for="city">{{ gettext("BadgesCityLabel") }}</label>
-                <!-- todo! -->
-               <!--  <textarea class="form-control" name="city" placeholder="{{ gettext("BadgesExampleCity") }}" required>
-                  {%- if application.evidence.length >= 2 -%} 
-                    {{ application.evidence[1].reflection | replace("Hive City: ", "")}}
-                  {%- endif -%} -->
+                <label for="city">{{ "BadgesCityLabel" | i18n }}</label>
+                <textarea class="form-control" name="city" placeholder="{{ 'BadgesExampleCity' | i18n }}" ng-model="newApplication.city">
                 </textarea>
               </div>
               <div class="form-inline">
                 <label for="claimcode">{{ "HaveClaimCode" | i18n }}</label>
                 <span id="claim-code-explainer" class="fa fa-question-sign" title="For example, if you are awarded a badge for attending an event, the organizer of the event may provide you with a claim code."></span>
-                <input class="form-control" name="claimcode" placeholder="e.g. 1234Z764HGZIHBHZ">
+                <input class="form-control" name="claimcode" placeholder="e.g. 1234Z764HGZIHBHZ" ng-model="newApplication.claimcode">
                 <button name="submit" class="btn btn-primary btn-lg pull-right">
                   {{ "Submit" | i18n }}
                 </button>
@@ -89,30 +94,30 @@
     </div>
 
     <div ng-show="showIssueForm" class="container">
-      <div ng-if="_user">
+      <div ng-if="_user.username">
 
-        <div id="issue-badge-success" class="panel panel-info panel-badges">
+        <div ng-if="issueSuccessful" id="issue-badge-success" class="panel panel-info panel-badges">
           <div class="panel-body">
             <h2>{{ "Thanks" | i18n }}</h2>
             <p>Your badge was issued successfully.</p>
           </div>
         </div>
 
-        <div id="issue" class="panel panel-navy panel-badges" data-badge-slug="{{ badge.slug }}">
+        <div id="issue" class="panel panel-navy panel-badges">
           <div class="panel-body">
-            <button ng-click="applicationOff()" class="close-panel btn"><span class="fa fa-times"></span></button>
+            <button ng-click="formsOff()" class="close-panel btn"><span class="fa fa-times"></span></button>
             <h2>Issue this badge</h2>
-            <div class="submit-badge-error alert alert-danger">
-              <p>{{ "BadgesError" | i18n}} <span class="error-message"></span></p>
+            <div ng-show="error" class="submit-badge-error alert alert-danger">
+              <p>{{ "BadgesError" | i18n }} {{error}}</p>
             </div>
-            <form id="issue-form">
+            <form id="issue-form" ng-submit="submitIssue(newIssue)">
               <div class="form-group">
                 <label for="email">Who are you issuing this badge to?</label>
-                <input class="form-control" name="email" placeholder="Email Address" required></input>
+                <input class="form-control" name="email" placeholder="Email Address" ng-model="newIssue.email" required></input>
               </div>
               <div class="form-group">
                 <label for="comment">Add a comment</label>
-                <textarea class="form-control" name="comment" placeholder="Add a comment..." required></textarea>
+                <textarea ng-model="newIssue.comment" class="form-control" name="comment" placeholder="Add a comment..." required></textarea>
               </div>
               <div class="form-inline">
                 <button name="submit" class="btn btn-primary btn-lg pull-right">{{ "Submit" | i18n }}</button>
@@ -122,17 +127,17 @@
         </div>
       </div>
     </div>
-
+ 
     <div class="container">
       <h2>{{ "Badge Requirements" | i18n }}
         <span ng-hide="showApplicationForm">
-            <button ng-if="_user && !assertionUrl" ng-click="showApplicationForm = true" class="btn btn-lg btn-success pull-right">
+            <button ng-if="_user.username && !assertionUrl" ng-click="applicationOn()" class="btn btn-lg btn-success pull-right">
               {{ (application ? "Edit Application": "Apply") | i18n }}
             </button>
      
             <button ng-if="canIssue" ng-click="issueOn()" id="js-badge-issuing" class="btn btn-lg btn-success pull-right">Issue this badge</button>
 
-            <button ng-hide="_user" class="btn btn-lg btn-success pull-right webmaker-login">{{ "Login to apply" | i18n }}</button>
+            <button ng-if="!_user.username" class="btn btn-lg btn-success pull-right webmaker-login">{{ "Login to apply" | i18n }}</button>
         </span>
       </h2>
       <ol class="list-badges-requirements list-unstyled">
