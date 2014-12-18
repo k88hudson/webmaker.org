@@ -289,7 +289,7 @@ app.use(function (req, res, next) {
 app.use("/templates", express.static(path.join(__dirname, "views")));
 
 //adding Content Security Policy (CSP) to webmaker.org
-//app.use(middleware.addCSP());
+app.use(middleware.addCSP());
 
 app.use(app.router);
 // We've run out of known routes, 404
