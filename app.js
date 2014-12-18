@@ -387,8 +387,7 @@ app.get("/privacy-makes", routes.gallery({
 // Initialize badges routes
 var badgesRoutes = routes.badges(env);
 
-// Badge pages
-app.get('/badges/:badge?', badgesRoutes.details);
+app.get('/badges/:badge?', routes.angular);
 
 // Badges admin
 app.get('/admin/badges', badgesRoutes.middleware.atleast('isMentor'), routes.angular);
@@ -396,6 +395,7 @@ app.get('/admin/badges/:badge', badgesRoutes.middleware.hasPermissions('viewInst
 
 // Badges API
 app.get("/api/badges", badgesRoutes.getAll);
+app.get("/api/badges/:badge/details", badgesRoutes.details);
 app.post("/api/badges/:badge/apply", badgesRoutes.apply);
 app.post("/api/badges/:badge/claim", badgesRoutes.claim);
 app.post("/api/badges/:badge/issue", badgesRoutes.middleware.hasPermissions('issue'), badgesRoutes.issue);

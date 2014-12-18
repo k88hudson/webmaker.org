@@ -87,7 +87,6 @@ module.exports = function (env) {
         system: env.get('BADGES_SYSTEM'),
         badge: req.params.badge
       }, function (err, instances) {
-
         // Errors
         if (err) {
           return res.send(500, err.message);
@@ -123,6 +122,7 @@ module.exports = function (env) {
       });
     },
     details: function (req, res, next) {
+
       function getBadge(callback) {
         badgeClient.getBadge({
           system: env.get('BADGES_SYSTEM'),
@@ -193,9 +193,8 @@ module.exports = function (env) {
           // Do we want to ask which Hive city the earner is affiliated with?
           var requestCity = (req.params.badge === 'hive-community-member');
 
-          res.render('badge-detail.html', {
-            page: req.params.badge,
-            view: 'badges',
+          res.send({
+            slug: req.params.badge,
             badge: badge,
             canIssue: canIssue,
             requestCity: requestCity,

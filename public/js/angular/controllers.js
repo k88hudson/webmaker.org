@@ -392,6 +392,24 @@ angular
         .error(onError);
     }
   ])
+  .controller('badgesDetailController', ['$scope', '$http', '$window', '$routeParams', '$modal', 'wmNav',
+    function ($scope, $http, $window, $routeParams, $modal, wmNav) {
+      wmNav.page('badge-' + $routeParams.badge);
+      wmNav.section('explore');
+
+      $http
+        .get('/api/badges/' + $routeParams.badge + '/details')
+        .success(function (data) {
+          Object.keys(data).forEach(function (key) {
+            $scope[key] = data[key];
+          });
+        })
+        //todo
+        .error(function (err) {
+          console.log(err);
+        });
+    }
+  ])
   .controller('appmakerController', ['$scope', '$rootScope', '$timeout',
     function ($scope, $rootScope, $timeout) {
 

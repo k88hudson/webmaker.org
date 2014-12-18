@@ -8,8 +8,8 @@
     .align-items(center);
     color: inherit;
     border-bottom: 1px solid #DDD;
-    padding-top: (@grid-gutter-width / 2);
-    padding-bottom: (@grid-gutter-width / 2);
+    padding-top: (@_badges-spacing / 2);
+    padding-bottom: (@_badges-spacing / 2);
     &:hover {
       text-decoration: none;
       color: @green;
@@ -34,4 +34,214 @@
   th {
     vertical-align: middle;
   }
+}
+
+@_badges-spacing: 20px;
+body[id^="page-badge"] {
+  font-size: 16px;
+  color: #555;
+  background: #E3EAEE;
+
+  h1, h2, h3 {
+    font-weight: 300;
+  }
+
+  .badge {
+    background: none;
+  }
+
+  // Sections
+  .main section {
+    padding: (@_badges-spacing * 2) @_badges-spacing;
+  }
+
+  #badge-not-found {
+    padding: 0;
+    .empty-badge {
+      margin-right: @_badges-spacing;
+    }
+    .flex-display();
+    .align-items(center);
+    .justify-content(center);
+    @media (min-width: @screen-sm-min) {
+      padding: (@_badges-spacing * 2);
+      h1 {
+        font-size: 4em;
+      }
+    }
+  }
+
+  #requirements {
+    background: white;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      margin-left: -30px;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 30px 30px 0 30px;
+      border-color: @lightgrey transparent transparent transparent;
+    }
+  }
+
+  // Badge
+  .badge {
+    margin-bottom: @_badges-spacing;
+    text-align: center;
+    img {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  .badge-tags {
+    line-height: 1.4;
+    .fa-tags {
+      color: @green;
+    }
+  }
+  .badge-tag {
+    &:not(:last-of-type):after {
+      content: ',';
+    }
+  }
+
+  .badge-earned {
+    font-size: 1.4em;
+
+    .btn {
+      margin-right: 10px;
+    }
+    
+    .username {
+      color: @green
+    }
+  }
+
+  // Panels
+
+  .panel-navy {
+    background: @navy;
+    color: #FFF;
+    h1, h2, h3, h4, label {
+      font-weight: 200;
+    }
+    input.form-control,
+    textarea.form-control {
+      border-color: #555;
+    }
+    .form-group {
+      padding: 0;
+    }
+  }
+
+  .panel-badges {
+    .issuer-avatar {
+      width: 30px;
+      margin-right: 5px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    p {
+      line-height: 1.6;
+    }
+    textarea {
+      max-width: 700px;
+      min-height: 80px;
+    }
+    input { margin: 0; max-width: 700px; }
+    form.backpack {
+      display: inline-block;
+      margin-left: 10px;
+    }
+    .form-group, h2, h1 {
+      margin: 0 0 @_badges-spacing 0;
+    }
+    label {
+      margin-bottom: 10px;
+    }
+    .form-inline label {
+      margin-right: 10px;
+    }
+    .panel-body {
+      padding: (@_badges-spacing * 2);
+    }
+  }
+
+  // Lists
+  .list-badges-requirements {
+    counter-reset: badges-number;
+    > li {
+      margin: (@_badges-spacing * 2) 0;
+    }
+
+    // Major bullets
+    // Since this is parsed from markdown, include h1, h2, h3 just in case.
+    > li  {
+      > h1, h2, h3 {
+        font-size: 1.6em;
+        margin-bottom: @_badges-spacing;
+        color: @green;
+        &:before {
+          counter-increment: badges-number;
+          content: counter(badges-number)'. ';
+        }
+      }
+    }
+
+    // Minor bullets with check marks
+    > li > ul {
+      background: #F5F5F5;
+      list-style: none;
+      padding: @_badges-spacing;
+      border-top: 1px solid darken(#F5F5F5, 5%);
+      border-bottom: 1px solid darken(#F5F5F5, 5%);
+      > li {
+        padding-left: 2em;
+        margin-bottom: 1em;
+        position: relative;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+        &:before {
+          content: '\f00c';
+          font-family: FontAwesome;
+          font-weight: normal;
+          font-style: normal;
+          text-decoration: inherit;
+          -webkit-font-smoothing: antialiased;
+          *margin-right: .3em; // fixes ie7 issues
+
+          color: @green;
+          position: absolute;
+          left: 0;
+        }
+      }
+    }
+
+  }
+
+  // Close button
+  .close-panel {
+    background: none;
+    float: right;
+    color: fade(#FFF, 80%);
+    margin-top: -20px;
+    margin-right: -20px;
+    &:hover {
+      color: #FFF;
+    }
+  }
+
+  // Spacing overrides
+  #content,
+  footer,
+  .make-footer {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
 }

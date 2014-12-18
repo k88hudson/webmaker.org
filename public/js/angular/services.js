@@ -30,24 +30,28 @@ angular
                   url: 'gallery'
                 },
                 {
-                  id: 'skill-sharer',
+                  id: 'badge-skill-sharer',
                   title: 'Skill Sharer Badge',
-                  url: 'badges/skill-sharer'
+                  url: 'badges/skill-sharer',
+                  pushState: true,
                 },
                 {
-                  id: 'super-mentor',
+                  id: 'badge-webmaker-super-mentor',
                   title: 'Super Mentor Badge',
-                  url: 'badges/webmaker-super-mentor'
+                  url: 'badges/webmaker-super-mentor',
+                  pushState: true,
                 },
                 {
-                  id: 'super-mentor',
+                  id: 'badge-hive-community-member',
                   title: 'Hive Community Badge',
-                  url: 'badges/hive-community-member'
+                  url: 'badges/hive-community-member',
+                  pushState: true,
                 },
                 {
-                  id: 'webmaker-mentor',
+                  id: 'badge-webmaker-mentor',
                   title: 'Webmaker Mentor Badge',
-                  url: 'badges/webmaker-mentor'
+                  url: 'badges/webmaker-mentor',
+                  pushState: true,
                 },
                 {
                   id: 'badges-admin',
